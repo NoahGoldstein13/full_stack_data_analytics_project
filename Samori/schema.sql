@@ -15,10 +15,9 @@ lower_estimate INT,
 higher_estimate INT, 
 value_of_care_display_id VARCHAR,
 value_of_care_display_name VARCHAR, 
-value_of_care_category VARCHAR, 
+value_of_care_category VARCHAR 
 
 );
-
 
 CREATE TABLE census (
 
@@ -31,11 +30,11 @@ median_income INT
 
 CREATE TABLE readmissions (
 
-faciltiy_name VARCHAR
-facility_id INT
-measure_name VARCHAR
-number_of_discharges INT
-excess_readmission_ratio DECIMAL
+faciltiy_name VARCHAR,
+facility_id INT,
+measure_name VARCHAR,
+number_of_discharges INT,
+excess_readmission_ratio DECIMAL,
 number_of_readmissions INT
 
 );
