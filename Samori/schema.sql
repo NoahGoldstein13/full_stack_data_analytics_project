@@ -19,21 +19,21 @@ value_code VARCHAR
 
 CREATE TABLE census (
 
-zip_code INT,
-population INT,
-poverty_rate DECIMAL,
-median_income INT
+zip_code VARCHAR,
+population NUMERIC,
+poverty_rate NUMERIC,
+median_income NUMERIC
 
 );
 
 CREATE TABLE readmissions (
 
 facility_name VARCHAR,
-facility_id INT,
+facility_id NUMERIC,
 measure_name VARCHAR,
-number_of_discharges INT,
-excess_readmission_ratio DOUBLE,
-number_of_readmissions INT
+number_of_discharges NUMERIC,
+excess_readmission_ratio DOUBLE PRECISION,
+number_of_readmissions NUMERIC
 
 );
 
