@@ -1,22 +1,20 @@
 CREATE TABLE value (
 
-facility_id INT,
-facility_name TEXT,
+facility_id VARCHAR,
+facility_name VARCHAR,
 address VARCHAR,
 city VARCHAR,
 state VARCHAR, 
-zip_code INT,
-payment_measure_id VARCHAR,
+zip_code VARCHAR,
 payment_measure_name VARCHAR,
 payment_category VARCHAR,
-denominator INT,
-payment INT, 
-lower_estimate INT,
-higher_estimate INT, 
-value_of_care_display_id VARCHAR,
+denominator NUMERIC,
+payment NUMERIC, 
 value_of_care_display_name VARCHAR, 
-value_of_care_category VARCHAR 
-
+value_of_care_category VARCHAR,
+outcome VARCHAR,
+value_code VARCHAR
+	
 );
 
 CREATE TABLE census (
@@ -44,3 +42,6 @@ FROM readmissions;
 
 SELECT * 
 FROM census
+
+SELECT *
+FROM value;
