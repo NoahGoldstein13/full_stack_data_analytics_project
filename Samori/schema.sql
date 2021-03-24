@@ -1,4 +1,4 @@
-CREATE TABLE value_of_care (
+CREATE TABLE value (
 
 facility_id INT,
 facility_name TEXT,
@@ -15,16 +15,27 @@ lower_estimate INT,
 higher_estimate INT, 
 value_of_care_display_id VARCHAR,
 value_of_care_display_name VARCHAR, 
-value_of_care_category VARCHAR, 
-start_date DATE,
-end_date DATE, 
-population INT,
-poverty_rate DECIMAL,
-caucasian_% DECIMAL,
-african_american_% DECIMAL,
-american_indian_% DECIMAL,
-asian_% DECIMAL,
-native_hawaiian_% DECIMAL,
-two_or_more_races_% DECIMAL, 
-hispanic_% DECIMAL
+value_of_care_category VARCHAR 
+
 );
+
+CREATE TABLE census (
+
+zip_code INT,
+poulation INT,
+poverty_rate DECIMAL,
+median_income INT
+
+);
+
+CREATE TABLE readmissions (
+
+faciltiy_name VARCHAR,
+facility_id INT,
+measure_name VARCHAR,
+number_of_discharges INT,
+excess_readmission_ratio DECIMAL,
+number_of_readmissions INT
+
+);
+
