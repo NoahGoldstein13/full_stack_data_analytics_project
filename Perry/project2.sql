@@ -21,8 +21,8 @@ value_of_care_category VARCHAR
 
 CREATE TABLE census (
 
-zip_code INT,
-poulation INT,
+zipcode VARCHAR,
+population INT,
 poverty_rate DECIMAL,
 median_income INT
 
@@ -41,3 +41,6 @@ number_of_readmissions INT
 
 SELECT * 
 FROM readmissions;
+
+SELECT * 
+FROM census
