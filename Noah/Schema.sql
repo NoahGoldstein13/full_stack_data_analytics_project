@@ -1,4 +1,4 @@
-Schema
+-- Schema
 
 CREATE TABLE value (
 
