@@ -9,31 +9,39 @@ zip_code VARCHAR,
 payment_measure_name VARCHAR,
 payment_category VARCHAR,
 denominator NUMERIC,
-payment NUMERIC,
+payment NUMERIC, 
 value_of_care_display_name VARCHAR, 
 value_of_care_category VARCHAR,
 outcome VARCHAR,
 value_code VARCHAR
-
+	
 );
 
 CREATE TABLE census (
 
-zip_code VARCHAR,
-population NUMERIC,
-poverty_rate NUMERIC,
-median_income NUMERIC
+zipcode VARCHAR,
+population INT,
+poverty_rate DECIMAL,
+median_income INT
 
 );
 
 CREATE TABLE readmissions (
 
 facility_name VARCHAR,
-facility_id NUMERIC,
+facility_id INT,
 measure_name VARCHAR,
-number_of_discharges NUMERIC,
-excess_readmission_ratio DOUBLE PRECISION,
-number_of_readmissions NUMERIC
+number_of_discharges INT,
+excess_readmission_ratio DECIMAL,
+number_of_readmissions INT
 
 );
 
+SELECT * 
+FROM readmissions;
+
+SELECT * 
+FROM census
+
+SELECT *
+FROM value;
