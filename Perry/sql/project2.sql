@@ -38,6 +38,8 @@ number_of_readmissions NUMERIC
 
 );
 
+-- Heart Failure
+
 SELECT voc.zip_code, sum(denominator) as Denominator, round(avg(payment),0) as avg_Payment, value_code, median_income
 FROM voc
 LEFT JOIN census 
@@ -45,6 +47,8 @@ LEFT JOIN census
 WHERE value_code = 'HF'
 Group By voc.zip_code, value_code, census.median_income
 Order By voc.zip_code;
+
+-- Heart Attack
 
 SELECT voc.zip_code, sum(denominator) as denominator, round(avg(payment),0) as avg_payment, value_code, median_income
 FROM voc
@@ -54,6 +58,8 @@ WHERE value_code = 'AMI'
 Group By voc.zip_code, value_code, census.median_income
 Order By voc.zip_code;
 
+-- Pneumonia
+
 SELECT voc.zip_code, sum(denominator) as denominator, round(avg(payment),0)as avg_payment, value_code, median_income
 FROM voc
 LEFT JOIN census 
@@ -61,6 +67,8 @@ LEFT JOIN census
 WHERE value_code = 'PN'
 Group By voc.zip_code, value_code, census.median_income
 Order By voc.zip_code;
+
+-- Hip Knee
 
 SELECT voc.zip_code, sum(denominator)  as denominator, round(avg(payment),0)as avg_payment, value_code, median_income
 FROM voc
