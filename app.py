@@ -14,10 +14,6 @@ engine = create_engine(f'postgresql://{rds_connection_string}')
 Base = automap_base()
 Base.prepare(engine, reflect=True)
 
-Value = Base.classes.value
-Readmission = Base.classes.readmissions
-Census = Base.classes.census
-
 #create flask object
 app = Flask(__name__)
 
@@ -38,24 +34,26 @@ def home():
 @app.route("/api/v1.0/heart_failure")
 def heart_failure():
     # Create our session (link) from Python to the DB
-    session = Session(engine)
-
-    # Query all heart_failure
-    day_last = session.query(Measurement.date).order_by(Measurement.date.desc()).first()
-    results = session.query(Measurement.date, Measurement.prcp).\
-    filter(Measurement.date > day_year_ago).order_by(Measurement.date).all()
-
-    session.close()
+    result = engine.execute("""SELECT voc.zip_code, sum(denominator) as Denominator, round(avg(payment),0) as avg_Payment, value_code, median_income
+                                FROM voc
+                            LEFT JOIN census 
+                                ON census.zip_code = voc.zip_code
+                            WHERE value_code = 'HF'
+                            Group By voc.zip_code, value_code, census.median_income
+                            Order By voc.zip_code;""")
 
     # Convert list of tuples into normal list
-    all_precip = []
-    for date, prcp in results:
-        all_precip_dict = {}
-        all_precip_dict["Date"] = date
-        all_precip_dict["Precipitation"] = prcp
-        all_precip.append(all_precip_dict)
+    all_hf = []
+    for zip_code, denominator, avg_pmt, val_code, med_inc in result:
+        all_hf_dict = {}
+        all_hf_dict["Zip Code"] = str(zip_code)
+        all_hf_dict["Denominator"] = float(denominator)
+        all_hf_dict["Avg Payment"] = float(avg_pmt)
+        all_hf_dict["Value Code"] = str(val_code)
+        all_hf_dict["Median Income"] =float(med_inc)
+        all_hf.append(all_hf_dict)
 
-    return jsonify(all_precip)
+    return jsonify(all_hf)
 
 @app.route("/api/v1.0/hip_knee")
 def hip_knee():
