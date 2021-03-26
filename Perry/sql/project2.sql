@@ -40,7 +40,11 @@ number_of_readmissions NUMERIC
 
 -- Heart Failure
 
-SELECT voc.zip_code, sum(denominator) as Denominator, round(avg(payment),0) as avg_Payment, value_code, median_income
+SELECT voc.zip_code, 
+        sum(denominator) as Denominator, 
+        round(avg(payment),0) as avg_Payment, 
+        value_code, 
+        median_income
 FROM voc
 LEFT JOIN census 
     ON census.zip_code = voc.zip_code
@@ -50,7 +54,11 @@ Order By voc.zip_code;
 
 -- Heart Attack
 
-SELECT voc.zip_code, sum(denominator) as denominator, round(avg(payment),0) as avg_payment, value_code, median_income
+SELECT voc.zip_code, 
+        sum(denominator) as denominator, 
+        round(avg(payment),0) as avg_payment, 
+        value_code, 
+        median_income
 FROM voc
 LEFT JOIN census 
     ON census.zip_code = voc.zip_code
@@ -60,7 +68,11 @@ Order By voc.zip_code;
 
 -- Pneumonia
 
-SELECT voc.zip_code, sum(denominator) as denominator, round(avg(payment),0)as avg_payment, value_code, median_income
+SELECT voc.zip_code, 
+        sum(denominator) as denominator, 
+        round(avg(payment),0)as avg_payment, 
+        value_code, 
+        median_income
 FROM voc
 LEFT JOIN census 
     ON census.zip_code = voc.zip_code
@@ -70,10 +82,29 @@ Order By voc.zip_code;
 
 -- Hip Knee
 
-SELECT voc.zip_code, sum(denominator)  as denominator, round(avg(payment),0)as avg_payment, value_code, median_income
+SELECT voc.zip_code, 
+        sum(denominator)  as denominator, 
+        round(avg(payment),0)as avg_payment, 
+        value_code, 
+        median_income
 FROM voc
 LEFT JOIN census 
     ON census.zip_code = voc.zip_code
 WHERE value_code = 'HIP_KNEE'
 Group By voc.zip_code, value_code, census.median_income
 Order By voc.zip_code;
+
+-- National Stats
+SELECT value_code, 
+		sum(denominator) as total_cases, 
+		round(avg(payment),0) as avg_payment, 
+		max(payment) as max_payment,
+		min(payment) as min_payment,
+		round(avg(median_income)) as avg_med_inc,
+		round(max(median_income)) as max_med_inc,
+		round(min(median_income)) as min_med_inc
+FROM voc
+LEFT JOIN census 
+    ON census.zip_code = voc.zip_code
+Group By value_code
+Order By value_code; 
