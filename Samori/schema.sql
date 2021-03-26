@@ -1,5 +1,6 @@
 CREATE TABLE value (
 
+id SERIAL Primary Key,
 facility_id VARCHAR,
 facility_name VARCHAR,
 address VARCHAR,
@@ -18,7 +19,7 @@ value_code VARCHAR
 );
 
 CREATE TABLE census (
-
+id SERIAL Primary Key,
 zip_code VARCHAR,
 population NUMERIC,
 poverty_rate NUMERIC,
@@ -27,7 +28,7 @@ median_income NUMERIC
 );
 
 CREATE TABLE readmissions (
-
+id SERIAL Primary Key,
 facility_name VARCHAR,
 facility_id NUMERIC,
 measure_name VARCHAR,
