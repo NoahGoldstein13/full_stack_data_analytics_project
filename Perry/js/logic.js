@@ -1,20 +1,38 @@
 var arrColorsG = ["#08306b","#08519c","#2171b5", "#4292c6", "#6baed6","#9ecae1", "#c6dbef", "#deebf7", "#f7fbff","white"];
 
-
-
-function buildMetadata(sample) {
-  d3.json("samples.json").then((data) => {
+// fetch('http://127.0.0.1:5000')
+//   .then((response) => {
+//     return response.json()
+//   })
+//   .then((data) => {
+//     // Work with JSON data here
+//     console.log(data)
+//   })
+//   .catch((err) => {
+//     // Do something for an error here
+//   })
+  
+function buildMetadata(care) {
+  d3.json("http://127.0.0.1:5000//api/v1.0/national_stats").then((data) => {
     var metadata= data.metadata;
-    var resultsarray= metadata.filter(sampleobject => 
-      sampleobject.id == sample);
+    var resultsarray= metadata.filter(careType => 
+      careType.id == care);
     var result= resultsarray[0]
 
-    var panel = d3.select("#sample-metadata");
+    var panel = d3.select("#voc-metadata");
 
     panel.html("");
 
-    Object.entries(result).forEach(([key, value]) => {
-      panel.append("h6").text(`${key}: ${value}`);
+    Object.entries(result).forEach(([avg_med_inc, avg_pmt,max_med_inc,max_pmt, min_med_inc, min_pmt, tot_cases, value_code]) => {
+      panel.append("h4").text(value_code);
+      panel.append("h6").text(`Total Cases: ${tot_cases}`);
+      panel.append("h6").text(`Average Payment: ${avg_pmt}`);
+      panel.append("h6").text(`Maximum Payment: ${max_pmt}`);
+      panel.append("h6").text(`Minimum Payment: ${min_pmt}`);
+      panel.append("h6").text(`Average Median Income: ${avg_med_inc}`);
+      panel.append("h6").text(`Maximum Median Income: ${max_med_inc}`);
+      panel.append("h6").text(`Minimum Median Income: ${min_med_inc}`);
+
     });
 
   //buildGauge(result.wfreq)
@@ -24,8 +42,8 @@ function buildMetadata(sample) {
 
 // Guage chart construction
 
-function buildGaugeChart(sample) {
-  console.log("sample", sample);
+function buildGaugeChart(care) {
+  console.log("care", care);
 
   d3.json("samples.json").then(data =>{
 
@@ -33,7 +51,7 @@ function buildGaugeChart(sample) {
     //console.log("objs", objs);
 
     var matchedSampleObj = objs.filter(sampleData => 
-      sampleData["id"] === parseInt(sample));
+      sampleData["id"] === parseInt(care));
     //console.log("buildGaugeChart matchedSampleObj", matchedSampleObj);
 
     gaugeChart(matchedSampleObj[0]);
@@ -111,12 +129,12 @@ function gaugeChart(data) {
 }
 
 // Build Charts
-function buildCharts(sample) {
+function buildCharts(care) {
 
 d3.json("samples.json").then((data) => {
   var samples= data.samples;
-  var resultsarray= samples.filter(sampleobject => 
-      sampleobject.id == sample);
+  var resultsarray= samples.filter(careType => 
+      careType.id == care);
   var result= resultsarray[0]
 
   var ids = result.otu_ids;
@@ -171,16 +189,16 @@ function init() {
 
 var selector = d3.select("#selDataset");
 
-d3.json("samples.json").then((data) => {
-  var sampleNames = data.names;
-  sampleNames.forEach((sample) => {
+d3.json("http://127.0.0.1:5000//api/v1.0/national_stats").then((data) => {
+  var careNames = data["value code"];
+  careNames.forEach((care) => {
     selector
       .append("option")
-      .text(sample)
-      .property("value", sample);
+      .text(care)
+      .property("value", care);
   });
 
-  const firstSample = sampleNames[0];
+  const firstSample = careNames[0];
   buildMetadata(firstSample);
   buildCharts(firstSample);
   buildGaugeChart(firstSample)
@@ -189,10 +207,10 @@ d3.json("samples.json").then((data) => {
 }
 
 // Event Listener
-function optionChanged(newSample) {
-buildMetadata(newSample);
-buildCharts(newSample);
-buildGaugeChart(newSample)
+function optionChanged(newCareType) {
+buildMetadata(newCareType);
+buildCharts(newCareType);
+buildGaugeChart(newCareType)
 
 }
 

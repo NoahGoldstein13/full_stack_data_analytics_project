@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 
 from flask import Flask, jsonify
+from flask_cors import CORS, cross_origin
 
 #set up database
 rds_connection_string = "postgres:pear12@localhost:5432/project2"
@@ -16,6 +17,17 @@ Base.prepare(engine, reflect=True)
 
 #create flask object
 app = Flask(__name__)
+
+cors = CORS(app)
+# app.config['CORS_HEADERS'] = 'Content-Type'
+
+# cors = CORS(app, resources={r"/api/v1.0/heart_failure": {"origins": "http://[::]:8000"}})
+# cors = CORS(app, resources={r"/api/v1.0/hip_knee": {"origins": "http://[::]:8000"}})
+# cors = CORS(app, resources={r"/api/v1.0/pneumonia": {"origins": "http://[::]:8000"}})
+# cors = CORS(app, resources={r"/api/v1.0/heart_attack": {"origins": "http://[::]:8000"}})
+# cors = CORS(app, resources={r"/api/v1.0/national_stats": {"origins": "http://[::]:8000"}})
+
+# @cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
 
 #create flask routes
 @app.route("/")
@@ -31,6 +43,9 @@ def home():
         f"/api/v1.0/national_stats<br/>"
 
     )
+def _corsify_actual_response(response):
+    response.headers.add("Access-Control-Allow-Origin", "http://[::]:8000")
+    return response
 
 @app.route("/api/v1.0/heart_failure")
 def heart_failure():
@@ -62,6 +77,9 @@ def heart_failure():
         all_hf.append(all_hf_dict)
 
     return jsonify(all_hf)
+def _corsify_actual_response(response):
+    response.headers.add("Access-Control-Allow-Origin", "http://[::]:8000")
+    return response
 
 @app.route("/api/v1.0/hip_knee")
 def hip_knee():
@@ -93,6 +111,9 @@ def hip_knee():
         all_hk.append(all_hk_dict)
 
     return jsonify(all_hk)
+def _corsify_actual_response(response):
+    response.headers.add("Access-Control-Allow-Origin", "http://[::]:8000")
+    return response
 
 @app.route("/api/v1.0/pneumonia")
 def pneumonia():
@@ -125,6 +146,10 @@ def pneumonia():
 
     return jsonify(all_pn)
 
+def _corsify_actual_response(response):
+    response.headers.add("Access-Control-Allow-Origin", "http://[::]:8000")
+    return response
+
 @app.route("/api/v1.0/heart_attack")
 def heart_attack():
     # Create our session (link) from Python to the DB
@@ -156,6 +181,10 @@ def heart_attack():
 
     return jsonify(all_ami)
 
+def _corsify_actual_response(response):
+    response.headers.add("Access-Control-Allow-Origin", "http://[::]:8000")
+    return response
+
 @app.route("/api/v1.0/national_stats")
 def national_stats():
     result = engine.execute("""SELECT value_code, 
@@ -186,7 +215,10 @@ def national_stats():
         all_nat.append(all_nat_dict)
 
     return jsonify(all_nat)
-    
+
+def _corsify_actual_response(response):
+    response.headers.add("Access-Control-Allow-Origin", "http://[::]:8000")
+    return response  
 
 if __name__ == '__main__':
     app.run(debug=True)
