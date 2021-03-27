@@ -19,6 +19,8 @@ TBD
 * Javascript
 * D3
 * Plotly
+* Leaflet
+* MapBox
 * CSS
 * HTML
 * Flask App
@@ -68,6 +70,10 @@ TBD
 2. TBD
 3. TBD
 #### Main Complications While Developing Full Stack Application
+1. TBD
+2. TBD
+3. TBD
+#### Limitations to Our Data
 1. TBD
 2. TBD
 3. TBD
