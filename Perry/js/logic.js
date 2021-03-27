@@ -10,32 +10,32 @@
 //     // Do something for an error here
 //   })
   
-var data_nat;
-var data_all;
+// var data_nat;
+// var data_all;
 
-function setJSONData() {
-  // National Data
-  let data_nat;    
-  fetch("http://127.0.0.1:5000//api/v1.0/national_stats").then(
-      function(u){ return u.json();}
-    ).then(
-      function(json){
-        data_nat = json;
-        console.log(data_nat)
-      }
-    )
+// function setJSONData() {
+//   // National Data
+//   let data_nat;    
+//   fetch("http://127.0.0.1:5000//api/v1.0/national_stats").then(
+//       function(u){ return u.json();}
+//     ).then(
+//       function(json){
+//         data_nat = json;
+//         //console.log(data_nat)
+//       }
+//     )
   
-  // All Data
-  let data_all;    
-    fetch("http://127.0.0.1:5000/api/v1.0/all_data").then(
-        function(u){ return u.json();}
-      ).then(
-        function(json){
-          data_all = json;
-          console.log(data_all)
-        }
-      )
-}
+//   // All Data
+//   let data_all;    
+//     fetch("http://127.0.0.1:5000/api/v1.0/all_data").then(
+//         function(u){ return u.json();}
+//       ).then(
+//         function(json){
+//           data_all = json;
+//           //console.log(data_all)
+//         }
+//       )
+// }
 
 function buildNationalSummary(care) {
   d3.json(data_nat).then((data) => {
@@ -57,9 +57,7 @@ function buildNationalSummary(care) {
       panel.append("h6").text(`Average Median Income: ${avg_med_inc}`);
       panel.append("h6").text(`Maximum Median Income: ${max_med_inc}`);
       panel.append("h6").text(`Minimum Median Income: ${min_med_inc}`);
-
     });
-
   });
 }
 
@@ -106,7 +104,6 @@ d3.json("samples.json").then((data) => {
       text:labels.slice(0,10).reverse(),
       type:"bar",
       orientation:"h"
-
     }
   ];
 
@@ -124,14 +121,15 @@ function init() {
 
 var selector = d3.select("#selDataset");
 
-d3.json(data_nat).then((data) => {
-  var careNames = data["value code"];
-  console.log(careNames)
-  careNames.forEach((care) => {
-    selector
-      .append("option")
-      .text(care)
-      .property("value", care);
+d3.json("http://127.0.0.1:5000//api/v1.0/national_stats").then((data) => {
+  console.log("here we are")  
+  var careNames = data[0]["Value Code"];
+    console.log(careNames)
+    careNames.forEach((care) => {
+      selector
+        .append("option")
+        .text(care)
+        .property("value", care);
   });
 
   // d3.json("samples.json").then((data) => {
@@ -160,5 +158,5 @@ buildGaugeChart(newCareType)
 
 }
 
-setJSONData();
+//setJSONData();
 init();
