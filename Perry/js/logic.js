@@ -38,7 +38,7 @@
 // }
 
 function buildNationalSummary(care) {
-  d3.json(data_nat).then((data) => {
+  d3.json("http://127.0.0.1:5000//api/v1.0/national_stats").then((data) => {
     var value_code= data["Value Code"];
     var resultsarray= value_code.filter(careType => 
       careType["Value Code"] == care);
@@ -122,30 +122,25 @@ function init() {
 var selector = d3.select("#selDataset");
 
 d3.json("http://127.0.0.1:5000//api/v1.0/national_stats").then((data) => {
-  console.log("here we are")  
-  var careNames = data[0]["Value Code"];
-    console.log(careNames)
-    careNames.forEach((care) => {
-      selector
-        .append("option")
-        .text(care)
-        .property("value", care);
-  });
+  //console.log("here we are")  
+  var careNames = []; 
+  data.forEach((datapoint) => {
 
-  // d3.json("samples.json").then((data) => {
-    
-  //   var sampleNames = data.names;
-  //   sampleNames.forEach((sample) => {
-  //     selector
-  //       .append("option")
-  //       .text(sample)
-  //       .property("value", sample);
-  //   });
+    careNames.push(datapoint["Value Code"])
   
+  });
+  careNames.forEach((care) => {
+    selector
+      .append("option")
+      .text(care)
+      .property("value", care);
+  });
+ 
   const firstSample = careNames[0];
   buildNationalSummary(firstSample);
-  buildCharts(firstSample);
-  buildGaugeChart(firstSample)
+  //buildBarChart(firstSample);
+  //buildScatterPlot(firstSample);
+  //buildHeatmap(firstSample)
 
 });
 }
@@ -153,8 +148,8 @@ d3.json("http://127.0.0.1:5000//api/v1.0/national_stats").then((data) => {
 // Event Listener
 function optionChanged(newCareType) {
 buildNationalSummary(newCareType);
-buildCharts(newCareType);
-buildGaugeChart(newCareType)
+//buildScatterPlot((newCareType);
+//buildHeatmap(newCareType)
 
 }
 
