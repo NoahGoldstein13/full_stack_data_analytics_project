@@ -9,7 +9,7 @@ from flask import Flask, jsonify
 from flask_cors import CORS, cross_origin
 
 #set up database
-rds_connection_string = "postgres:pear12@localhost:5432/project2"
+rds_connection_string = "postgres:3411@localhost:5432/project2"
 engine = create_engine(f'postgresql://{rds_connection_string}')
 
 Base = automap_base()
