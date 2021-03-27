@@ -1,44 +1,6 @@
-// fetch('http://127.0.0.1:5000')
-//   .then((response) => {
-//     return response.json()
-//   })
-//   .then((data) => {
-//     // Work with JSON data here
-//     console.log(data)
-//   })
-//   .catch((err) => {
-//     // Do something for an error here
-//   })
-  
-// var data_nat;
-// var data_all;
-
-// function setJSONData() {
-//   // National Data
-//   let data_nat;    
-//   fetch("http://127.0.0.1:5000//api/v1.0/national_stats").then(
-//       function(u){ return u.json();}
-//     ).then(
-//       function(json){
-//         data_nat = json;
-//         //console.log(data_nat)
-//       }
-//     )
-  
-//   // All Data
-//   let data_all;    
-//     fetch("http://127.0.0.1:5000/api/v1.0/all_data").then(
-//         function(u){ return u.json();}
-//       ).then(
-//         function(json){
-//           data_all = json;
-//           //console.log(data_all)
-//         }
-//       )
-// }
-
 function buildNationalSummary(care) {
   d3.json("http://127.0.0.1:5000//api/v1.0/national_stats").then((data) => {
+    console.log(data[0]["Value Code"])
     var value_code= data["Value Code"];
     var resultsarray= value_code.filter(careType => 
       careType["Value Code"] == care);

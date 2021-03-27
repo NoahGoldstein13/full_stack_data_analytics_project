@@ -48,9 +48,14 @@ number_of_readmissions NUMERIC
 
 CREATE TABLE zipcode (
 id SERIAL Primary Key,
-zip VARCHAR,
-Latitude DECIMAL PRECISION,
-Longitude DECIMAL PRECISION
+Zip VARCHAR,
+City VARCHAR,
+State VARCHAR,
+Latitude DECIMAL,
+Longitude DECIMAL,
+Timezone Integer,
+"Daylight savings time flag" Integer,
+geopoint VARCHAR
 
 );
 

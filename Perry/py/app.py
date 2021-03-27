@@ -20,16 +20,6 @@ app = Flask(__name__)
 
 cors = CORS(app)
 
-# app.config['CORS_HEADERS'] = 'Content-Type'
-
-# cors = CORS(app, resources={r"/api/v1.0/heart_failure": {"origins": "http://[::]:8000"}})
-# cors = CORS(app, resources={r"/api/v1.0/hip_knee": {"origins": "http://[::]:8000"}})
-# cors = CORS(app, resources={r"/api/v1.0/pneumonia": {"origins": "http://[::]:8000"}})
-# cors = CORS(app, resources={r"/api/v1.0/heart_attack": {"origins": "http://[::]:8000"}})
-# cors = CORS(app, resources={r"/api/v1.0/national_stats": {"origins": "http://[::]:8000"}})
-
-# @cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
-
 #create flask routes
 @app.route("/")
 def home():
