@@ -23,12 +23,15 @@ TBD
 * Flask App
 
 
-## Data Sources (2 CMS.gov Datasets, 1 Census.gov Dataset, 1 )
+## Data Sources (2 CMS.gov Datasets, 1 Census.gov Dataset, 1 OpenDataSoft.com Dataset)
 ---
-1. **National Payment and Value of Care Data by Hospital:** see dataset [here](https://data.cms.gov/provider-data/dataset/c7us-v4mf)
-2. **Hospital Readmissions Data - Heart Attack, Heart Failure, Hip/Knee Replacement, and Pneumonia:** see dataset [here](https://data.cms.gov/provider-data/dataset/9n3s-kdb3)
-3. **Census Data - :** see dataset [here]()
-4. **US Zip Code - Latitude and Longitude Coordinates:** see dataset [here](https://public.opendatasoft.com/explore/dataset/us-zip-code-latitude-and-longitude/table/?q=&refine.state=NY&location=16,40.76779,-73.96313&basemap=jawg.streets)
+1. **National Payment and Value of Care Data by Hospital:** see dataset [HERE](https://data.cms.gov/provider-data/dataset/c7us-v4mf)
+2. **Hospital Readmissions Data - Heart Attack, Heart Failure, Hip/Knee Replacement, and Pneumonia:** see dataset [HERE](https://data.cms.gov/provider-data/dataset/9n3s-kdb3)
+3. **Census Data - Zipcodes, Population, Poverty Rate, and Median Income:** see data source [HERE](https://www.census.gov/data/developers.html)
+   - We used the following sources to utilize the census data API:
+     - Library Documentation [LINK](https://github.com/datamade/census)
+     - Desired data labels [LINK](https://gist.github.com/afhaque/60558290d6efd892351c4b64e5c01e9b)
+4. **US Zip Code - Latitude and Longitude Coordinates:** see dataset [HERE](https://public.opendatasoft.com/explore/dataset/us-zip-code-latitude-and-longitude/table/?q=&refine.state=NY&location=16,40.76779,-73.96313&basemap=jawg.streets)
 
 
 
