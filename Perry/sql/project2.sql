@@ -1,3 +1,5 @@
+-- Value of Care Create Table
+
 CREATE TABLE value (
 
 id SERIAL Primary Key,
@@ -18,6 +20,8 @@ value_code VARCHAR
 
 );
 
+-- Census Create Table
+
 CREATE TABLE census (
 id SERIAL Primary Key,
 zip_code VARCHAR,
@@ -26,6 +30,8 @@ poverty_rate NUMERIC,
 median_income NUMERIC
 
 );
+
+-- Readmissions Create Table
 
 CREATE TABLE readmissions (
 id SERIAL Primary Key,
@@ -38,60 +44,82 @@ number_of_readmissions NUMERIC
 
 );
 
+-- Zipcode Create Table
+
+CREATE TABLE zipcode (
+id SERIAL Primary Key,
+zip VARCHAR,
+Latitude DECIMAL PRECISION,
+Longitude DECIMAL PRECISION
+
+);
+
 -- Heart Failure
 
 SELECT voc.zip_code, 
         sum(denominator) as Denominator, 
         round(avg(payment),0) as avg_Payment, 
         value_code, 
-        median_income
+        median_income,
+        latitude, 
+        longitude
 FROM voc
-LEFT JOIN census 
-    ON census.zip_code = voc.zip_code
+LEFT JOIN census ON census.zip_code = voc.zip_code
+LEFT JOIN zipcode ON zipcode.zip = voc.zip_code
+Group By voc.zip_code, value_code, census.median_income, latitude, longitude
 WHERE value_code = 'HF'
-Group By voc.zip_code, value_code, census.median_income
+Group By voc.zip_code, value_code, census.median_income, latitude, longitude
 Order By voc.zip_code;
 
 -- Heart Attack
 
 SELECT voc.zip_code, 
-        sum(denominator) as denominator, 
-        round(avg(payment),0) as avg_payment, 
+        sum(denominator) as Denominator, 
+        round(avg(payment),0) as avg_Payment, 
         value_code, 
-        median_income
+        median_income,
+        latitude, 
+        longitude
 FROM voc
-LEFT JOIN census 
-    ON census.zip_code = voc.zip_code
+LEFT JOIN census ON census.zip_code = voc.zip_code
+LEFT JOIN zipcode ON zipcode.zip = voc.zip_code
+Group By voc.zip_code, value_code, census.median_income, latitude, longitude
 WHERE value_code = 'AMI'
-Group By voc.zip_code, value_code, census.median_income
+Group By voc.zip_code, value_code, census.median_income, latitude, longitude
 Order By voc.zip_code;
 
 -- Pneumonia
 
 SELECT voc.zip_code, 
-        sum(denominator) as denominator, 
-        round(avg(payment),0)as avg_payment, 
+        sum(denominator) as Denominator, 
+        round(avg(payment),0) as avg_Payment, 
         value_code, 
-        median_income
+        median_income,
+        latitude, 
+        longitude
 FROM voc
-LEFT JOIN census 
-    ON census.zip_code = voc.zip_code
+LEFT JOIN census ON census.zip_code = voc.zip_code
+LEFT JOIN zipcode ON zipcode.zip = voc.zip_code
+Group By voc.zip_code, value_code, census.median_income, latitude, longitude
 WHERE value_code = 'PN'
-Group By voc.zip_code, value_code, census.median_income
+Group By voc.zip_code, value_code, census.median_income, latitude, longitude
 Order By voc.zip_code;
 
 -- Hip Knee
 
 SELECT voc.zip_code, 
-        sum(denominator)  as denominator, 
-        round(avg(payment),0)as avg_payment, 
+        sum(denominator) as Denominator, 
+        round(avg(payment),0) as avg_Payment, 
         value_code, 
-        median_income
+        median_income,
+        latitude, 
+        longitude
 FROM voc
-LEFT JOIN census 
-    ON census.zip_code = voc.zip_code
+LEFT JOIN census ON census.zip_code = voc.zip_code
+LEFT JOIN zipcode ON zipcode.zip = voc.zip_code
+Group By voc.zip_code, value_code, census.median_income, latitude, longitude
 WHERE value_code = 'HIP_KNEE'
-Group By voc.zip_code, value_code, census.median_income
+Group By voc.zip_code, value_code, census.median_income, latitude, longitude
 Order By voc.zip_code;
 
 -- National Stats
