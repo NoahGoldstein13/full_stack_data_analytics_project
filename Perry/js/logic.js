@@ -10,14 +10,14 @@
 //     // Do something for an error here
 //   })
   
-function buildMetadata(care) {
+function buildNationalSummary(care) {
   d3.json("http://127.0.0.1:5000//api/v1.0/national_stats").then((data) => {
-    var metadata= data.metadata;
-    var resultsarray= metadata.filter(careType => 
-      careType.id == care);
+    var value_code= data.["Value Code"];
+    var resultsarray= value_code.filter(careType => 
+      careType.["Value Code"] == care);
     var result= resultsarray[0]
 
-    var panel = d3.select("#voc-metadata");
+    var panel = d3.select("#voc-natsum");
 
     panel.html("");
 
@@ -106,8 +106,17 @@ d3.json("http://127.0.0.1:5000//api/v1.0/national_stats").then((data) => {
       .property("value", care);
   });
 
+  d3.json("samples.json").then((data) => {
+    var sampleNames = data.names;
+    sampleNames.forEach((sample) => {
+      selector
+        .append("option")
+        .text(sample)
+        .property("value", sample);
+    });
+  
   const firstSample = careNames[0];
-  buildMetadata(firstSample);
+  buildNationalSummary(firstSample);
   buildCharts(firstSample);
   buildGaugeChart(firstSample)
 
@@ -116,7 +125,7 @@ d3.json("http://127.0.0.1:5000//api/v1.0/national_stats").then((data) => {
 
 // Event Listener
 function optionChanged(newCareType) {
-buildMetadata(newCareType);
+buildNationalSummary(newCareType);
 buildCharts(newCareType);
 buildGaugeChart(newCareType)
 
