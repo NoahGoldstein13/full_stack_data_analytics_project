@@ -24,6 +24,16 @@ TBD
 * Flask App
 
 
+## Process Flow
+---
+1. CSV and API into Pandas
+2. Cleanse data
+3. Push data to SQL database
+4. Create Flask API
+5. Pull data into browser using JavaScript
+6. Generate Dashboard using D3, MapBox, Plotly, etc.
+
+
 ## Data Sources (1 CMS.gov Dataset, 1 Census.gov Dataset, 1 OpenDataSoft.com Dataset)
 ---
 1. **National Payment and Value of Care Data by Hospital:** see dataset [HERE](https://data.cms.gov/provider-data/dataset/c7us-v4mf)
@@ -31,13 +41,25 @@ TBD
    - We used the following sources to utilize the census data API:
      - Library Documentation [LINK](https://github.com/datamade/census)
      - Desired data labels [LINK](https://gist.github.com/afhaque/60558290d6efd892351c4b64e5c01e9b)
-3. **US Zip Code - Latitude and Longitude Coordinates:** see dataset [HERE](https://public.opendatasoft.com/explore/dataset/us-zip-code-latitude-and-longitude/table/?q=&refine.state=NY&location=16,40.76779,-73.96313&basemap=jawg.streets)
-
+3. **US Zip Code Latitude and Longitude Coordinates:** see dataset [HERE](https://public.opendatasoft.com/explore/dataset/us-zip-code-latitude-and-longitude/table/?q=&refine.state=NY&location=16,40.76779,-73.96313&basemap=jawg.streets)
 
 
 ## Dataset Values Utilized and Ensuing Relationships (QuickDBD) 
 ---
 ![Screenshot](Noah/QuickDBDv2.JPG)
+
+
+## Dashboard View
+---
+![Screenshot]()
+
+
+## Charts & Visualizations (safjas)
+---
+![Screenshot]()
+![Screenshot]()
+![Screenshot]()
+
 
 ## Summary of Findings
 ---
