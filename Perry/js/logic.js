@@ -10,11 +10,38 @@
 //     // Do something for an error here
 //   })
   
+var data_nat;
+var data_all;
+
+function setJSONData() {
+  // National Data
+  let data_nat;    
+  fetch("http://127.0.0.1:5000//api/v1.0/national_stats").then(
+      function(u){ return u.json();}
+    ).then(
+      function(json){
+        data_nat = json;
+        console.log(data_nat)
+      }
+    )
+  
+  // All Data
+  let data_all;    
+    fetch("http://127.0.0.1:5000/api/v1.0/all_data").then(
+        function(u){ return u.json();}
+      ).then(
+        function(json){
+          data_all = json;
+          console.log(data_all)
+        }
+      )
+}
+
 function buildNationalSummary(care) {
-  d3.json("http://127.0.0.1:5000//api/v1.0/national_stats").then((data) => {
-    var value_code= data.["Value Code"];
+  d3.json(data_nat).then((data) => {
+    var value_code= data["Value Code"];
     var resultsarray= value_code.filter(careType => 
-      careType.["Value Code"] == care);
+      careType["Value Code"] == care);
     var result= resultsarray[0]
 
     var panel = d3.select("#voc-natsum");
@@ -97,8 +124,9 @@ function init() {
 
 var selector = d3.select("#selDataset");
 
-d3.json("http://127.0.0.1:5000//api/v1.0/national_stats").then((data) => {
+d3.json(data_nat).then((data) => {
   var careNames = data["value code"];
+  console.log(careNames)
   careNames.forEach((care) => {
     selector
       .append("option")
@@ -106,14 +134,15 @@ d3.json("http://127.0.0.1:5000//api/v1.0/national_stats").then((data) => {
       .property("value", care);
   });
 
-  d3.json("samples.json").then((data) => {
-    var sampleNames = data.names;
-    sampleNames.forEach((sample) => {
-      selector
-        .append("option")
-        .text(sample)
-        .property("value", sample);
-    });
+  // d3.json("samples.json").then((data) => {
+    
+  //   var sampleNames = data.names;
+  //   sampleNames.forEach((sample) => {
+  //     selector
+  //       .append("option")
+  //       .text(sample)
+  //       .property("value", sample);
+  //   });
   
   const firstSample = careNames[0];
   buildNationalSummary(firstSample);
@@ -131,4 +160,5 @@ buildGaugeChart(newCareType)
 
 }
 
+setJSONData();
 init();

@@ -19,6 +19,7 @@ Base.prepare(engine, reflect=True)
 app = Flask(__name__)
 
 cors = CORS(app)
+
 # app.config['CORS_HEADERS'] = 'Content-Type'
 
 # cors = CORS(app, resources={r"/api/v1.0/heart_failure": {"origins": "http://[::]:8000"}})
@@ -36,6 +37,7 @@ def home():
         f"Welcome to the Hospital Value of Care API"
         f"<br> <br>"
         f"Available Routes:<br/>"
+        f"/api/v1.0/all_data<br/>"
         f"/api/v1.0/heart_failure<br/>"
         f"/api/v1.0/hip_knee<br/>"
         f"/api/v1.0/pneumonia<br/>"
@@ -43,6 +45,40 @@ def home():
         f"/api/v1.0/national_stats<br/>"
 
     )
+def _corsify_actual_response(response):
+    response.headers.add("Access-Control-Allow-Origin", "http://[::]:8000")
+    return response
+
+@app.route("/api/v1.0/all_data")
+def all_data():
+    # Create our session (link) from Python to the DB
+    result = engine.execute("""SELECT voc.zip_code, 
+                                    sum(denominator) as Denominator, 
+                                    round(avg(payment),0) as avg_Payment, 
+                                    value_code, median_income, 
+                                    latitude, 
+                                    longitude
+                                FROM voc
+                                LEFT JOIN census ON census.zip_code = voc.zip_code
+                                LEFT JOIN zipcode ON zipcode.zip = voc.zip_code
+                                Group By voc.zip_code, value_code, census.median_income, latitude, longitude
+                                Order By voc.zip_code;""")
+
+    # Convert list of tuples into normal list
+    all_ad = []
+    for zip_code, denominator, avg_pmt, val_code, med_inc, latitude, longitude in result:
+        all_ad_dict = {}
+        all_ad_dict["Zip Code"] = str(zip_code)
+        all_ad_dict["Denominator"] = float(denominator)
+        all_ad_dict["Avg Payment"] = float(avg_pmt)
+        all_ad_dict["Value Code"] = str(val_code)
+        all_ad_dict["Median Income"] = med_inc
+        all_ad_dict["Latitude"] = latitude
+        all_ad_dict["Longitude"] = longitude
+        all_ad.append(all_ad_dict)
+
+    return jsonify(all_ad)
+
 def _corsify_actual_response(response):
     response.headers.add("Access-Control-Allow-Origin", "http://[::]:8000")
     return response
@@ -77,6 +113,7 @@ def heart_failure():
         all_hf.append(all_hf_dict)
 
     return jsonify(all_hf)
+
 def _corsify_actual_response(response):
     response.headers.add("Access-Control-Allow-Origin", "http://[::]:8000")
     return response
