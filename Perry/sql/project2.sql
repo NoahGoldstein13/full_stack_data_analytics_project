@@ -27,20 +27,7 @@ id SERIAL Primary Key,
 zip_code VARCHAR,
 population NUMERIC,
 poverty_rate NUMERIC,
-median_income NUMERIC
-
-);
-
--- Readmissions Create Table
-
-CREATE TABLE readmissions (
-id SERIAL Primary Key,
-facility_name VARCHAR,
-facility_id NUMERIC,
-measure_name VARCHAR,
-number_of_discharges NUMERIC,
-excess_readmission_ratio DOUBLE PRECISION,
-number_of_readmissions NUMERIC
+median_income DOUBLE PRECISION
 
 );
 
@@ -128,6 +115,7 @@ Group By voc.zip_code, value_code, census.median_income, latitude, longitude
 Order By voc.zip_code;
 
 -- National Stats
+
 SELECT value_code, 
 		sum(denominator) as total_cases, 
 		round(avg(payment),0) as avg_payment, 
