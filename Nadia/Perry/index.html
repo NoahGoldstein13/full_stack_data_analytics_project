@@ -1,0 +1,64 @@
+<!doctype HTML PUBLIC "-/w3c/dtd HTML 4.01/en"
+
+"Http://www.w3.org/tr/html4/strict.dtd" >
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Value of Hospital Care</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- Our CSS -->
+  <link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 jumbotron text-center" style="background: url(./images/hospital.jpg) no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;" >
+        <h1 style="color: rgb(85, 83, 83);">Value of Hospital Care Dashboard</h1>
+        <h3 style="color: rgb(85, 83, 83);">Interactive data presentation for value of care categories</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <div class="well">
+          <h5>Value of Care</h5> 
+          <h6>Category:</h6>
+          <select id="selDataset" onchange="optionChanged(this.value)"></select>
+        </div>
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h4 class="panel-title">National Statistics</h4>
+          </div>
+          <div id="voc-natsum" class="panel-body"></div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div id="bar"></div>
+      </div>
+      <div class="col-md-5">
+        <div id="scatter"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div id="heatmap"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="./js/logic.js"></script>
+</body>
+
+<footer>
+    <p><h4>Created by: </h4>Nadia Richards  -  Samori Emmanuel  -  Noah Goldstein  -  Perry Reynolds</p>
+  </footer>
+
+</html> 
