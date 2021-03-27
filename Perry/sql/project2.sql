@@ -11,8 +11,8 @@ state VARCHAR,
 zip_code VARCHAR,
 payment_measure_name VARCHAR,
 payment_category VARCHAR,
-denominator NUMERIC,
-payment NUMERIC,
+denominator INTEGER,
+payment INTEGER,
 value_of_care_display_name VARCHAR, 
 value_of_care_category VARCHAR,
 outcome VARCHAR,
@@ -25,8 +25,8 @@ value_code VARCHAR
 CREATE TABLE census (
 id SERIAL Primary Key,
 zip_code VARCHAR,
-population NUMERIC,
-poverty_rate NUMERIC,
+population INTEGER,
+poverty_rate INTEGER,
 median_income DOUBLE PRECISION
 
 );
@@ -38,8 +38,8 @@ id SERIAL Primary Key,
 Zip VARCHAR,
 City VARCHAR,
 State VARCHAR,
-Latitude DECIMAL,
-Longitude DECIMAL,
+Latitude DOUBLE PRECISION,
+Longitude DOUBLE PRECISION,
 Timezone Integer,
 "Daylight savings time flag" Integer,
 geopoint VARCHAR
