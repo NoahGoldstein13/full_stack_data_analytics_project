@@ -22,76 +22,76 @@ d3.json(heart_failure, function(data) {
 
   console.log(data);
 
-  data.forEach(function(data) {
-    data.poverty = +data.poverty;
-    data.healthcare = +data.healthcare;
-    });
+//   data.forEach(function(data) {
+//     data.poverty = +data.poverty;
+//     data.healthcare = +data.healthcare;
+//     });
 
-  // Add X axis
-  var x = d3.scaleLinear()
-    .domain(d3.extent(data, xValue)).nice()
-    .range([ 0, width ]);
-  var xAxisG = svg.append("g")
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x))
-    .append('text')
-    .attr('class', 'axis-label')
-    .attr('x', width / 2)
-    .attr('y', 65)
-    .text(xLabel);
+//   // Add X axis
+//   var x = d3.scaleLinear()
+//     .domain(d3.extent(data, xValue)).nice()
+//     .range([ 0, width ]);
+//   var xAxisG = svg.append("g")
+//     .attr("transform", "translate(0," + height + ")")
+//     .call(d3.axisBottom(x))
+//     .append('text')
+//     .attr('class', 'axis-label')
+//     .attr('x', width / 2)
+//     .attr('y', 65)
+//     .text(xLabel);
 
-  // Add Y axis
-  var y = d3.scaleLinear()
-    .domain(d3.extent(data, yValue)).nice()
-    .range([ height, 0]);
-  var yAxisG = svg.append("g")
-    .call(d3.axisLeft(y))
-    .append('text')
-    .attr('class', 'axis-label')
-    .attr('x', -height / 2)
-    .attr('y', -60)
-    .attr('transform', `rotate(-90)`)
-    .style('text-anchor', 'middle')
-    .text(yLabel);
+//   // Add Y axis
+//   var y = d3.scaleLinear()
+//     .domain(d3.extent(data, yValue)).nice()
+//     .range([ height, 0]);
+//   var yAxisG = svg.append("g")
+//     .call(d3.axisLeft(y))
+//     .append('text')
+//     .attr('class', 'axis-label')
+//     .attr('x', -height / 2)
+//     .attr('y', -60)
+//     .attr('transform', `rotate(-90)`)
+//     .style('text-anchor', 'middle')
+//     .text(yLabel);
 
-  // Add circles
-  var circlesGroup = svg.selectAll("circle")
-    .data(data)
-    .enter()
-    .append("circle")
-        .attr("cx", d => { return x(d.poverty); })
-        .attr("cy", d => { return y(d.healthcare); })
-        .attr("r", 8)
-        .attr('class', 'stateCircle');
+//   // Add circles
+//   var circlesGroup = svg.selectAll("circle")
+//     .data(data)
+//     .enter()
+//     .append("circle")
+//         .attr("cx", d => { return x(d.poverty); })
+//         .attr("cy", d => { return y(d.healthcare); })
+//         .attr("r", 8)
+//         .attr('class', 'stateCircle');
 
-  // Add circle labels
-  svg.selectAll(".text")
-    .data(data)
-    .enter()
-    .append("text")
-      .attr("dy", "0.35em")
-      .attr("x", d => { return x(d.poverty); })
-      .attr("y", d => { return y(d.healthcare); })
-      .text(d => { return d.abbr; })
-      .attr('class', 'stateText')
-      .attr("font-size", "10px");
+//   // Add circle labels
+//   svg.selectAll(".text")
+//     .data(data)
+//     .enter()
+//     .append("text")
+//       .attr("dy", "0.35em")
+//       .attr("x", d => { return x(d.poverty); })
+//       .attr("y", d => { return y(d.healthcare); })
+//       .text(d => { return d.abbr; })
+//       .attr('class', 'stateText')
+//       .attr("font-size", "10px");
 
-  // Initialize tooltip
-  var toolTip = d3.tip() 
-  .attr("class", "d3-tip")
-  .html(function(d) {
-    return  `${d.state}<br>Poverty: ${d.poverty}<br>Healthcare: ${d.healthcare}<br>`; 
-});
+//   // Initialize tooltip
+//   var toolTip = d3.tip() 
+//   .attr("class", "d3-tip")
+//   .html(function(d) {
+//     return  `${d.state}<br>Poverty: ${d.poverty}<br>Healthcare: ${d.healthcare}<br>`; 
+// });
 
-// Create tooltip in the chart
-svg.call(toolTip);
+// // Create tooltip in the chart
+// svg.call(toolTip);
 
-// Create event listeners to display and hide the tooltip
-circlesGroup.on("mouseover", function(data) {
-  toolTip.show(data, this);
-})
-  // onmouseout event
-  .on("mouseout", function(data, index) {
-    toolTip.hide(data);
-  });
+// // Create event listeners to display and hide the tooltip
+// circlesGroup.on("mouseover", function(data) {
+//   toolTip.show(data, this);
+// })
+//   // onmouseout event
+//   .on("mouseout", function(data, index) {
+//     toolTip.hide(data);
+//   });
 });
