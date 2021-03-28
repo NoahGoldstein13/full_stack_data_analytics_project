@@ -1,12 +1,9 @@
 footer {
   text-align: center;
-  padding: 17px;
+
   background-color: rgb(1, 9, 58);
   color: white;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  width: 100%;
 }
 
 .col-md-12 {
