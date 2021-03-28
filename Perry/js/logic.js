@@ -7,7 +7,6 @@ function buildNationalSummary(care) {
       return data.values.filter(function(v) { return v ; });
   })
 
-
     var resultsarray= value_code.filter(careType => 
       careType["Value Code"] == care);
     var result= resultsarray[0]
@@ -27,7 +26,6 @@ function buildNationalSummary(care) {
       panel.append("h6").text(`Minimum Median Income: ${min_med_inc}`);
     });
   });
-}
 
 // Build Charts
 function buildCharts(care) {
@@ -90,7 +88,7 @@ function init() {
 var selector = d3.select("#selDataset");
 
 d3.json("http://127.0.0.1:5000//api/v1.0/national_stats").then((data) => {
-  //console.log("here we are")  
+  console.log("here we are")  
   var careNames = []; 
   data.forEach((datapoint) => {
 
@@ -115,11 +113,11 @@ d3.json("http://127.0.0.1:5000//api/v1.0/national_stats").then((data) => {
 
 // Event Listener
 function optionChanged(newCareType) {
-buildNationalSummary(newCareType);
+//buildNationalSummary(newCareType);
 //buildScatterPlot((newCareType);
 //buildHeatmap(newCareType)
 
 }
 
-//setJSONData();
-init();
+init()
+}
