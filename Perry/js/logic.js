@@ -2,8 +2,12 @@ function buildNationalSummary(care) {
   d3.json("http://127.0.0.1:5000//api/v1.0/national_stats").then((data) => {
     console.log(data)
     var map= d3.map(data);
-    test = map.values();
-    console.log(test[0]);
+    
+    d3.data(function(data) {
+      return data.values.filter(function(v) { return v ; });
+  })
+
+
     var resultsarray= value_code.filter(careType => 
       careType["Value Code"] == care);
     var result= resultsarray[0]
