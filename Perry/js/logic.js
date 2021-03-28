@@ -1,21 +1,21 @@
 function buildNationalSummary(care) {
   d3.json("http://127.0.0.1:5000//api/v1.0/national_stats").then((data) => {
-    console.log(data)
-    var map= d3.map(data);
+    console.log(data);
     
-    d3.data(function(data) {
-      return data.values.filter(function(v) { return v ; });
-  })
+    // var care_array = data.filter(datapoint => 
+        
+    //   datapoint["Value Code"] == care 
+    //   );
+    // });
+    
+    var foo = data.select(function(d) { return d["Value Code"] === care ? this : null; });
 
-    var resultsarray= value_code.filter(careType => 
-      careType["Value Code"] == care);
-    var result= resultsarray[0]
-
+    console.log(foo)
     var panel = d3.select("#voc-natsum");
 
     panel.html("");
 
-    Object.entries(result).forEach(([avg_med_inc, avg_pmt,max_med_inc,max_pmt, min_med_inc, min_pmt, tot_cases, value_code]) => {
+    Object.entries(foo).forEach(([avg_med_inc, avg_pmt,max_med_inc,max_pmt, min_med_inc, min_pmt, tot_cases, value_code]) => {
       panel.append("h4").text(value_code);
       panel.append("h6").text(`Total Cases: ${tot_cases}`);
       panel.append("h6").text(`Average Payment: ${avg_pmt}`);
@@ -24,9 +24,9 @@ function buildNationalSummary(care) {
       panel.append("h6").text(`Average Median Income: ${avg_med_inc}`);
       panel.append("h6").text(`Maximum Median Income: ${max_med_inc}`);
       panel.append("h6").text(`Minimum Median Income: ${min_med_inc}`);
+    
     });
-  });
-
+  
 // Build Charts
 function buildCharts(care) {
 
@@ -85,39 +85,37 @@ d3.json("samples.json").then((data) => {
 // Create Dropdown
 function init() {
 
-var selector = d3.select("#selDataset");
+  var selector = d3.select("#selDataset");
 
-d3.json("http://127.0.0.1:5000//api/v1.0/national_stats").then((data) => {
-  console.log("here we are")  
-  var careNames = []; 
-  data.forEach((datapoint) => {
+  d3.json("http://127.0.0.1:5000//api/v1.0/national_stats").then((data) => {
+    var careNames = []; 
+    data.forEach((datapoint) => {
 
-    careNames.push(datapoint["Value Code"])
+      careNames.push(datapoint["Value Code"])
+    
+    });
+    careNames.forEach((care) => {
+      selector
+        .append("option")
+        .text(care)
+        .property("value", care);
+    });
   
-  });
-  careNames.forEach((care) => {
-    selector
-      .append("option")
-      .text(care)
-      .property("value", care);
-  });
- 
-  const firstSample = careNames[0];
-  buildNationalSummary(firstSample);
-  //buildBarChart(firstSample);
-  //buildScatterPlot(firstSample);
-  //buildHeatmap(firstSample)
+    const firstSample = careNames[0];
+    buildNationalSummary(firstSample);
+    //buildBarChart(firstSample);
+    //buildScatterPlot(firstSample);
+    //buildHeatmap(firstSample)
 
+  });
+}
+
+  // Event Listener
+  function optionChanged(newCareType) {
+  //buildNationalSummary(newCareType);
+  //buildScatterPlot((newCareType);
+  //buildHeatmap(newCareType)
+  };
 });
-}
-
-// Event Listener
-function optionChanged(newCareType) {
-//buildNationalSummary(newCareType);
-//buildScatterPlot((newCareType);
-//buildHeatmap(newCareType)
-
-}
 
 init()
-}
