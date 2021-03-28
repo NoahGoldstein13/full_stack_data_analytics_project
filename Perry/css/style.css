@@ -7,7 +7,17 @@ footer {
   left: 0;
   right: 0;
   bottom: 0;
+}
 
+.col-md-12 {
+  text-align: center;
+  padding: 20px;
+  background-color: rgb(1, 9, 58);
+  color: rgb(1, 9, 58);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
 }
 
 html, body {

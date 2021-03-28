@@ -1,4 +1,4 @@
-var myMap = L.map("map", {
+var myMap = L.map("heatmap", {
     center: [37.0902, -95.7129],
     zoom: 13
   });

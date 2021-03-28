@@ -10,17 +10,21 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <!-- Our CSS -->
   <link rel="stylesheet" type="text/css" href="css/style.css">
-</head>
 
+  <div class="head_row">
+    <div class="col-md-12 jumbotron text-center" >
+      <h1 style="color: rgb(85, 83, 83);">Value of Hospital Care Dashboard</h1>
+      <h2 style="color: rgb(85, 83, 83);">Interactive data presentation for value of care categories</h2>
+    </div>
+  </div>
+
+</head>
+  
+  
 <body>
 
   <div class="container">
-    <div class="row">
-      <div class="col-md-12 jumbotron text-center" style="background: url(./images/hospital.jpg) no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;" >
-        <h1 style="color: rgb(85, 83, 83);">Value of Hospital Care Dashboard</h1>
-        <h2 style="color: rgb(85, 83, 83);">Interactive data presentation for value of care categories</h2>
-      </div>
-    </div>
+    
     <div class="row">
       <div class="col-md-2">
         <div class="well">
@@ -49,10 +53,16 @@
     </div>
   </div>
 
-
+  <!-- References -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <script src="./js/logic.js"></script>
+  <script type="text/javascript" src="./js/heatmap.js"></script>
+  <script type="text/javascript" src="./js/config.js"></script>
+
+  <!-- Leaflet heatmap plugin-->
+  <script type="text/javascript" src="./js/leaflet-heat.js"></script>
+
 </body>
 
 <footer>
