@@ -4,12 +4,14 @@ import datetime as dt
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
+import params
 
 from flask import Flask, jsonify
 from flask_cors import CORS, cross_origin
 
+print(params.pwd)
 #set up database
-rds_connection_string = "postgres:pear12@localhost:5432/project2"
+rds_connection_string = f"postgres:{params.pwd}@localhost:5432/project2"
 engine = create_engine(f'postgresql://{rds_connection_string}')
 
 Base = automap_base()

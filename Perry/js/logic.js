@@ -13,47 +13,14 @@ function buildNationalSummary(care) {
     
     Object.entries(care_array[0]).forEach(([key, value]) => {
 
-      panel.append("h8").text(`${key}: ${value}`);
-
+      panel.append("h9").text(`${key}: ${value}             `);
+      panel.append("h9").text(" ");
     }); 
- 
   });
 };  
 
 // Build Charts
 function buildCharts(care) {
-
-d3.json("samples.json").then((data) => {
-  var samples= data.samples;
-  var resultsarray= samples.filter(careType => 
-      careType.id == care);
-  var result= resultsarray[0];
-
-  var ids = result.otu_ids;
-  var labels = result.otu_labels;
-  var values = result.sample_values;
-
-  // Bubble Charts
-  var LayoutBubble = {
-    margin: { t: 0 },
-    xaxis: { title: "<b>OTU ID<b>" },
-    hovermode: "closest",
-    };
-
-    var DataBubble = [ 
-    {
-      x: ids,
-      y: values,
-      text: labels,
-      mode: "markers",
-      marker: {
-        color: ids,
-        size: values,
-        }
-    }
-  ];
-
-  Plotly.newPlot("heatmap", DataBubble, LayoutBubble);
 
   // Bar Charts
   var bar_data =[
@@ -72,9 +39,9 @@ d3.json("samples.json").then((data) => {
   };
 
   Plotly.newPlot("bar", bar_data, barLayout);
-});
-}
- 
+};
+
+
 // Create Dropdown
 function init() {
 
