@@ -1,14 +1,16 @@
 footer {
   text-align: center;
-
+  padding: 17px;
   background-color: rgb(1, 9, 58);
   color: white;
-  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
-.col-md-12 {
+.header {
   text-align: center;
-  padding: 20px;
+  padding: 25px;
   background-color: rgb(1, 9, 58);
   color: rgb(1, 9, 58);
   position: absolute;
@@ -17,6 +19,9 @@ footer {
   top: 0;
 }
 
+.panel {
+  width = 1000px
+}
 html, body {
   height: 100%;
   padding: 0;
