@@ -1,32 +1,25 @@
 function buildNationalSummary(care) {
   d3.json("http://127.0.0.1:5000//api/v1.0/national_stats").then((data) => {
-    console.log(data);
-    
-    // var care_array = data.filter(datapoint => 
-        
-    //   datapoint["Value Code"] == care 
-    //   );
-    // });
-    
-    var foo = data.select(function(d) { return d["Value Code"] === care ? this : null; });
+    //console.log(data);
 
-    console.log(foo)
+    var care_array = data.filter(datapoint => 
+        
+      datapoint["Value Code"] == care 
+      );
+      
     var panel = d3.select("#voc-natsum");
 
     panel.html("");
-
-    Object.entries(foo).forEach(([avg_med_inc, avg_pmt,max_med_inc,max_pmt, min_med_inc, min_pmt, tot_cases, value_code]) => {
-      panel.append("h4").text(value_code);
-      panel.append("h6").text(`Total Cases: ${tot_cases}`);
-      panel.append("h6").text(`Average Payment: ${avg_pmt}`);
-      panel.append("h6").text(`Maximum Payment: ${max_pmt}`);
-      panel.append("h6").text(`Minimum Payment: ${min_pmt}`);
-      panel.append("h6").text(`Average Median Income: ${avg_med_inc}`);
-      panel.append("h6").text(`Maximum Median Income: ${max_med_inc}`);
-      panel.append("h6").text(`Minimum Median Income: ${min_med_inc}`);
     
-    });
-  
+    Object.entries(care_array[0]).forEach(([key, value]) => {
+
+      panel.append("h8").text(`${key}: ${value}`);
+
+    }); 
+ 
+  });
+};  
+
 // Build Charts
 function buildCharts(care) {
 
@@ -34,7 +27,7 @@ d3.json("samples.json").then((data) => {
   var samples= data.samples;
   var resultsarray= samples.filter(careType => 
       careType.id == care);
-  var result= resultsarray[0]
+  var result= resultsarray[0];
 
   var ids = result.otu_ids;
   var labels = result.otu_labels;
@@ -112,10 +105,9 @@ function init() {
 
   // Event Listener
   function optionChanged(newCareType) {
-  //buildNationalSummary(newCareType);
+  buildNationalSummary(newCareType);
   //buildScatterPlot((newCareType);
   //buildHeatmap(newCareType)
   };
-});
 
-init()
+init();
