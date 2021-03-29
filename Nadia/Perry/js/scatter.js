@@ -61,7 +61,7 @@ d3.json("http://127.0.0.1:5000/api/v1.0/heart_failure").then ((data) => {
     .filter(d => {return (d.denominator * d.avg_pmt) < 45000000 })
         .attr("cx", d => { return x(d.med_inc); })
         .attr("cy", d => { return y(d.denominator * d.avg_pmt); })
-        .attr("r", 2)
+        .attr("r", 4)
         .attr('class', 'stateCircle');
 
   // Initialize tooltip
