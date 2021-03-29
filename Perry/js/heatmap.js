@@ -3,6 +3,16 @@ var myMap = L.map("heatmap", {
     zoom: 13
   });
 
+  function buildHeatmap(care) {
+
+
+
+
+
+
+
+
+  }
   L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
     attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
     tileSize: 512,
@@ -23,17 +33,32 @@ var myMap = L.map("heatmap", {
     for (var i = 0; i < response.length; i++) {
       var lat = response[i].Latitude;
       var lng = response[i].Longitude;
-      //console.log(lat);
-      //console.log(lng);
+    
       if (lat !== null && lng !== null) {
-        heatArray.push(lat, lng);
+        heatArray.push([lat, lng]);
       }
     }
-    console.log(heatArray);
-    
+    //console.log(heatArray);
+
     var heat = L.heatLayer(heatArray, {
       radius: 20,
       blur: 35
     }).addTo(myMap);
-  
+
   });
+
+  function init() {
+
+    var selector = d3.select("#selDataset");
+
+    const firstSample = "AMI";
+    buildHeatmap(firstSample)
+  };
+  
+    // Event Listener
+    function optionChanged(newCareType) {
+
+        buildHeatmap(newCareType)
+    };
+  
+  init();
