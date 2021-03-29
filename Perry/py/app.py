@@ -60,13 +60,13 @@ def all_data():
     all_ad = []
     for zip_code, denominator, avg_pmt, val_code, med_inc, latitude, longitude in result:
         all_ad_dict = {}
-        all_ad_dict["Zip Code"] = str(zip_code)
-        all_ad_dict["Denominator"] = float(denominator)
-        all_ad_dict["Avg Payment"] = float(avg_pmt)
-        all_ad_dict["Value Code"] = str(val_code)
-        all_ad_dict["Median Income"] = med_inc
-        all_ad_dict["Latitude"] = latitude
-        all_ad_dict["Longitude"] = longitude
+        all_ad_dict["zip_code"] = str(zip_code)
+        all_ad_dict["denominator"] = float(denominator)
+        all_ad_dict["avg_pmt"] = float(avg_pmt)
+        all_ad_dict["val_code"] = str(val_code)
+        all_ad_dict["med_inc"] = med_inc
+        all_ad_dict["latitude"] = latitude
+        all_ad_dict["longitude"] = longitude
         all_ad.append(all_ad_dict)
 
     return jsonify(all_ad)
@@ -95,13 +95,13 @@ def heart_failure():
     all_hf = []
     for zip_code, denominator, avg_pmt, val_code, med_inc, latitude, longitude in result:
         all_hf_dict = {}
-        all_hf_dict["Zip Code"] = str(zip_code)
-        all_hf_dict["Denominator"] = float(denominator)
-        all_hf_dict["Avg Payment"] = float(avg_pmt)
-        all_hf_dict["Value Code"] = str(val_code)
-        all_hf_dict["Median Income"] = med_inc
-        all_hf_dict["Latitude"] = latitude
-        all_hf_dict["Longitude"] = longitude
+        all_hf_dict["zip_code"] = str(zip_code)
+        all_hf_dict["denominator"] = float(denominator)
+        all_hf_dict["avg_pmt"] = float(avg_pmt)
+        all_hf_dict["val_code"] = str(val_code)
+        all_hf_dict["med_inc"] = med_inc
+        all_hf_dict["latitude"] = latitude
+        all_hf_dict["longitude"] = longitude
         all_hf.append(all_hf_dict)
 
     return jsonify(all_hf)
@@ -130,13 +130,13 @@ def hip_knee():
     all_hk = []
     for zip_code, denominator, avg_pmt, val_code, med_inc, latitude, longitude in result:
         all_hk_dict = {}
-        all_hk_dict["Zip Code"] = str(zip_code)
-        all_hk_dict["Denominator"] = float(denominator)
-        all_hk_dict["Avg Payment"] = float(avg_pmt)
-        all_hk_dict["Value Code"] = str(val_code)
-        all_hk_dict["Median Income"] = med_inc
-        all_hk_dict["Latitude"] = latitude
-        all_hk_dict["Longitude"] = longitude
+        all_hk_dict["zip_code"] = str(zip_code)
+        all_hk_dict["denominator"] = float(denominator)
+        all_hk_dict["avg_pmt"] = float(avg_pmt)
+        all_hk_dict["val_code"] = str(val_code)
+        all_hk_dict["med_inc"] = med_inc
+        all_hk_dict["latitude"] = latitude
+        all_hk_dict["longitude"] = longitude
         all_hk.append(all_hk_dict)
 
     return jsonify(all_hk)
@@ -164,13 +164,13 @@ def pneumonia():
     all_pn = []
     for zip_code, denominator, avg_pmt, val_code, med_inc, latitude, longitude  in result:
         all_pn_dict = {}
-        all_pn_dict["Zip Code"] = str(zip_code)
-        all_pn_dict["Denominator"] = float(denominator)
-        all_pn_dict["Avg Payment"] = float(avg_pmt)
-        all_pn_dict["Value Code"] = str(val_code)
-        all_pn_dict["Median Income"] = med_inc
-        all_pn_dict["Latitude"] = latitude
-        all_pn_dict["Longitude"] = longitude
+        all_pn_dict["zip_ode"] = str(zip_code)
+        all_pn_dict["denominator"] = float(denominator)
+        all_pn_dict["avg_pmt"] = float(avg_pmt)
+        all_pn_dict["val_code"] = str(val_code)
+        all_pn_dict["med_inc"] = med_inc
+        all_pn_dict["latitude"] = latitude
+        all_pn_dict["longitude"] = longitude
         all_pn.append(all_pn_dict)
 
     return jsonify(all_pn)
@@ -199,13 +199,13 @@ def heart_attack():
     all_ami = []
     for zip_code, denominator, avg_pmt, val_code, med_inc, latitude, longitude  in result:
         all_ami_dict = {}
-        all_ami_dict["Zip Code"] = str(zip_code)
-        all_ami_dict["Denominator"] = float(denominator)
-        all_ami_dict["Avg Payment"] = float(avg_pmt)
-        all_ami_dict["Value Code"] = str(val_code)
-        all_ami_dict["Median Income"] = med_inc
-        all_ami_dict["Latitude"] = latitude
-        all_ami_dict["Longitude"] = longitude
+        all_ami_dict["zip_code"] = str(zip_code)
+        all_ami_dict["denominator"] = float(denominator)
+        all_ami_dict["avg_pmt"] = float(avg_pmt)
+        all_ami_dict["val_code"] = str(val_code)
+        all_ami_dict["med_inc"] = med_inc
+        all_ami_dict["latitude"] = latitude
+        all_ami_dict["longitude"] = longitude
         all_ami.append(all_ami_dict)
 
     return jsonify(all_ami)
