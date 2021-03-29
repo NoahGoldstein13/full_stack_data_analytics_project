@@ -13,7 +13,7 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 }).addTo(myMap);
   
 function buildHeatmap(care) {
-    
+
     var url = "http://127.0.0.1:5000//api/v1.0/all_data";
     
     d3.json(url).then(function(response) {
@@ -51,14 +51,14 @@ function init() {
     var selector = d3.select("#selDataset");
 
     d3.json("http://127.0.0.1:5000//api/v1.0/national_stats").then((data) => {
-    var careNames = []; 
+    var care_Names = []; 
     data.forEach((datapoint) => {
 
-      careNames.push(datapoint["Value Code"])
+      care_Names.push(datapoint["Value Code"])
     
     });
   
-    const firstSample = careNames[0];
+    const firstSample = care_Names[0];
 
     buildHeatmap(firstSample)
     });
@@ -66,7 +66,7 @@ function init() {
 
 // Event Listener
 function optionChanged(newCareType) {
-
+    //L.removeLayer(myMap);
     buildHeatmap(newCareType)
 };
   
