@@ -93,20 +93,19 @@ def heart_failure():
 
     # Convert list of tuples into normal list
     all_hf = []
-    for zip_code, denominator, avg_pmt, val_code, med_inc, latitude, longitude in result:
-        all_hf_dict = {}
-        all_hf_dict["Zip Code"] = str(zip_code)
-        all_hf_dict["Denominator"] = float(denominator)
-        all_hf_dict["Avg Payment"] = float(avg_pmt)
-        all_hf_dict["Value Code"] = str(val_code)
-        all_hf_dict["Median Income"] = med_inc
-        all_hf_dict["Latitude"] = latitude
-        all_hf_dict["Longitude"] = longitude
+    for row in result:
+        all_hf_dict = {
+        "zip_code": str(row[0]),
+        "denominator": float(row[1]),
+        "avg_pmt": float(row[2]),
+        "value_code": str(row[3]),
+        "med_inc": row[4],
+        "latitude": row[5],
+        "longitude": row[6]}
         all_hf.append(all_hf_dict)
+        print(row)
 
     return jsonify(all_hf)
-    # return render_template('index.html', all_hf=all_hf)
-
 
 def _corsify_actual_response(response):
     response.headers.add("Access-Control-Allow-Origin", "http://[::]:8000")
