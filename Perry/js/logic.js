@@ -9,8 +9,6 @@ function buildNationalSummary(care) {
       );
       
     var panel = d3.select("#voc-natsum");
-
-    panel.html("");
     
     Object.entries(care_array[0]).forEach(([key, value]) => {
 
@@ -21,8 +19,9 @@ function buildNationalSummary(care) {
 };  
 
 function buildHeatmap(care) {
-
-  var myMap = L.map("heatmap", {
+  
+  if (myMap) {myMap.off(); myMap.remove();}
+    var myMap = L.map("heatmap", {
       center: [37.0902, -95.7129],
       zoom: 4.3
   });
@@ -42,7 +41,7 @@ function buildHeatmap(care) {
 
       var care_array = response.filter(datapoint => 
           
-          datapoint["Value Code"] == care 
+          datapoint.val_code == care 
           );
 
       //console.log(care_array);
@@ -57,14 +56,14 @@ function buildHeatmap(care) {
           heatArray.push([lat, lng]);
       }
       }
-      console.log(heatArray);
+      //console.log(heatArray);
 
       var heat = L.heatLayer(heatArray, {
       
       radius: 20,
       blur: 1
       }).addTo(myMap);
-      console.log(heat)
+      //console.log(heat)
   });
 };
 
@@ -97,6 +96,7 @@ function init() {
   // Event Listener
   function optionChanged(newCareType) {
   buildNationalSummary(newCareType);
+  
   buildHeatmap(newCareType);
 
   };
