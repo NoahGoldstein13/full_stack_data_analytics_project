@@ -98,7 +98,7 @@ def heart_failure():
         "zip_code": str(row[0]),
         "denominator": float(row[1]),
         "avg_pmt": float(row[2]),
-        "value_code": str(row[3]),
+        "val_code": str(row[3]),
         "med_inc": row[4],
         "latitude": row[5],
         "longitude": row[6]}
@@ -112,111 +112,113 @@ def _corsify_actual_response(response):
     return response
 
 
+@app.route("/api/v1.0/hip_knee")
+def hip_knee():
+    # Create our session (link) from Python to the DB
+    result = engine.execute("""SELECT voc.zip_code, 
+                                    sum(denominator) as Denominator, 
+                                    round(avg(payment),0) as avg_Payment, 
+                                    value_code, median_income, 
+                                    latitude, 
+                                    longitude
+                                FROM voc
+                                LEFT JOIN census ON census.zip_code = voc.zip_code
+                                LEFT JOIN zipcode ON zipcode.zip = voc.zip_code
+                                WHERE value_code = 'HIP_KNEE'
+                                Group By voc.zip_code, value_code, census.median_income, latitude, longitude
+                                Order By voc.zip_code;""")
 
+    # Convert list of tuples into normal list
+    all_hk = []
+    for row in result:
+        all_hk_dict = {
+        "zip_code": str(row[0]),
+        "denominator": float(row[1]),
+        "avg_pmt": float(row[2]),
+        "val_code": str(row[3]),
+        "med_inc": row[4],
+        "latitude": row[5],
+        "longitude": row[6]}
+        all_hk.append(all_hk_dict)
+        print(row)
 
-# @app.route("/api/v1.0/hip_knee")
-# def hip_knee():
-#     # Create our session (link) from Python to the DB
-#     result = engine.execute("""SELECT voc.zip_code, 
-#                                     sum(denominator) as Denominator, 
-#                                     round(avg(payment),0) as avg_Payment, 
-#                                     value_code, median_income, 
-#                                     latitude, 
-#                                     longitude
-#                                 FROM voc
-#                                 LEFT JOIN census ON census.zip_code = voc.zip_code
-#                                 LEFT JOIN zipcode ON zipcode.zip = voc.zip_code
-#                                 WHERE value_code = 'HIP_KNEE'
-#                                 Group By voc.zip_code, value_code, census.median_income, latitude, longitude
-#                                 Order By voc.zip_code;""")
+    return jsonify(all_hk)
 
-#     # Convert list of tuples into normal list
-#     all_hk = []
-#     for zip_code, denominator, avg_pmt, val_code, med_inc, latitude, longitude in result:
-#         all_hk_dict = {}
-#         all_hk_dict["Zip Code"] = str(zip_code)
-#         all_hk_dict["Denominator"] = float(denominator)
-#         all_hk_dict["Avg Payment"] = float(avg_pmt)
-#         all_hk_dict["Value Code"] = str(val_code)
-#         all_hk_dict["Median Income"] = med_inc
-#         all_hk_dict["Latitude"] = latitude
-#         all_hk_dict["Longitude"] = longitude
-#         all_hk.append(all_hk_dict)
+def _corsify_actual_response(response):
+    response.headers.add("Access-Control-Allow-Origin", "http://[::]:8000")
+    return response
 
-#     return jsonify(all_hk)
-# def _corsify_actual_response(response):
-#     response.headers.add("Access-Control-Allow-Origin", "http://[::]:8000")
-#     return response
+@app.route("/api/v1.0/pneumonia")
+def pneumonia():
+    # Create our session (link) from Python to the DB
+    result = engine.execute("""SELECT voc.zip_code, 
+                                    sum(denominator) as Denominator, 
+                                    round(avg(payment),0) as avg_Payment, 
+                                    value_code, median_income, 
+                                    latitude, 
+                                    longitude
+                                FROM voc
+                                LEFT JOIN census ON census.zip_code = voc.zip_code
+                                LEFT JOIN zipcode ON zipcode.zip = voc.zip_code
+                                WHERE value_code = 'PN'
+                                Group By voc.zip_code, value_code, census.median_income, latitude, longitude
+                                Order By voc.zip_code;""")
 
-# @app.route("/api/v1.0/pneumonia")
-# def pneumonia():
-#     # Create our session (link) from Python to the DB
-#     result = engine.execute("""SELECT voc.zip_code, 
-#                                     sum(denominator) as Denominator, 
-#                                     round(avg(payment),0) as avg_Payment, 
-#                                     value_code, median_income, 
-#                                     latitude, 
-#                                     longitude
-#                                 FROM voc
-#                                 LEFT JOIN census ON census.zip_code = voc.zip_code
-#                                 LEFT JOIN zipcode ON zipcode.zip = voc.zip_code
-#                                 WHERE value_code = 'PN'
-#                                 Group By voc.zip_code, value_code, census.median_income, latitude, longitude
-#                                 Order By voc.zip_code;""")
+    # Convert list of tuples into normal list
+    all_pn = []
+    for row in result:
+        all_pn_dict = {
+        "zip_code": str(row[0]),
+        "denominator": float(row[1]),
+        "avg_pmt": float(row[2]),
+        "val_code": str(row[3]),
+        "med_inc": row[4],
+        "latitude": row[5],
+        "longitude": row[6]}
+        all_pn.append(all_pn_dict)
+        print(row)
 
-#     # Convert list of tuples into normal list
-#     all_pn = []
-#     for zip_code, denominator, avg_pmt, val_code, med_inc, latitude, longitude  in result:
-#         all_pn_dict = {}
-#         all_pn_dict["Zip Code"] = str(zip_code)
-#         all_pn_dict["Denominator"] = float(denominator)
-#         all_pn_dict["Avg Payment"] = float(avg_pmt)
-#         all_pn_dict["Value Code"] = str(val_code)
-#         all_pn_dict["Median Income"] = med_inc
-#         all_pn_dict["Latitude"] = latitude
-#         all_pn_dict["Longitude"] = longitude
-#         all_pn.append(all_pn_dict)
+    return jsonify(all_pn)
 
-#     return jsonify(all_pn)
+def _corsify_actual_response(response):
+    response.headers.add("Access-Control-Allow-Origin", "http://[::]:8000")
+    return response
 
-# def _corsify_actual_response(response):
-#     response.headers.add("Access-Control-Allow-Origin", "http://[::]:8000")
-#     return response
+@app.route("/api/v1.0/heart_attack")
+def heart_attack():
+    # Create our session (link) from Python to the DB
+    result = engine.execute("""SELECT voc.zip_code, 
+                                    sum(denominator) as Denominator, 
+                                    round(avg(payment),0) as avg_Payment, 
+                                    value_code, median_income, 
+                                    latitude, 
+                                    longitude
+                                FROM voc
+                                LEFT JOIN census ON census.zip_code = voc.zip_code
+                                LEFT JOIN zipcode ON zipcode.zip = voc.zip_code
+                                WHERE value_code = 'AMI'
+                                Group By voc.zip_code, value_code, census.median_income, latitude, longitude
+                                Order By voc.zip_code;""")
 
-# @app.route("/api/v1.0/heart_attack")
-# def heart_attack():
-#     # Create our session (link) from Python to the DB
-#     result = engine.execute("""SELECT voc.zip_code, 
-#                                     sum(denominator) as Denominator, 
-#                                     round(avg(payment),0) as avg_Payment, 
-#                                     value_code, median_income, 
-#                                     latitude, 
-#                                     longitude
-#                                 FROM voc
-#                                 LEFT JOIN census ON census.zip_code = voc.zip_code
-#                                 LEFT JOIN zipcode ON zipcode.zip = voc.zip_code
-#                                 WHERE value_code = 'AMI'
-#                                 Group By voc.zip_code, value_code, census.median_income, latitude, longitude
-#                                 Order By voc.zip_code;""")
+    # Convert list of tuples into normal list
+    all_ami = []
+    for row in result:
+        all_ami_dict = {
+        "zip_code": str(row[0]),
+        "denominator": float(row[1]),
+        "avg_pmt": float(row[2]),
+        "val_code": str(row[3]),
+        "med_inc": row[4],
+        "latitude": row[5],
+        "longitude": row[6]}
+        all_ami.append(all_ami_dict)
+        print(row)
 
-#     # Convert list of tuples into normal list
-#     all_ami = []
-#     for zip_code, denominator, avg_pmt, val_code, med_inc, latitude, longitude  in result:
-#         all_ami_dict = {}
-#         all_ami_dict["Zip Code"] = str(zip_code)
-#         all_ami_dict["Denominator"] = float(denominator)
-#         all_ami_dict["Avg Payment"] = float(avg_pmt)
-#         all_ami_dict["Value Code"] = str(val_code)
-#         all_ami_dict["Median Income"] = med_inc
-#         all_ami_dict["Latitude"] = latitude
-#         all_ami_dict["Longitude"] = longitude
-#         all_ami.append(all_ami_dict)
+    return jsonify(all_ami)
 
-#     return jsonify(all_ami)
-
-# def _corsify_actual_response(response):
-#     response.headers.add("Access-Control-Allow-Origin", "http://[::]:8000")
-#     return response
+def _corsify_actual_response(response):
+    response.headers.add("Access-Control-Allow-Origin", "http://[::]:8000")
+    return response
 
 # @app.route("/api/v1.0/national_stats")
 # def national_stats():
