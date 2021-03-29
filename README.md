@@ -3,7 +3,7 @@ By: _**Nadia Richards, Samori Emmanuel, Noah Goldstein, Perry Reynolds**_
 
 ## Background
 ---
-In the wake of a global pandemic, public health and healthcare have been brought to the forefront of the public eye. Questions have been raised and scenarios proposed about our current healthcare system and the flaws withtin it. We took an extensive look at the different care models across the country and how they compare in terms of avergae price paid per different type of condition as well as how the price of these conditions varies across the country. By focusing specifically on Heart Failur, Pneumonia, Hip/Knee Replacements and Heart Attacks, we were able to take an in depth look at the medical data and develop the results detailed below.
+In the wake of a global pandemic, public health and healthcare have risen to the forefront of the public eye. Questions have been raised and scenarios proposed about our current healthcare system and the flaws withtin. We took an extensive look at the various care models across the country and how they compare in terms of price paid per condition type, as well as how the price of certain conditions vary across the country. By focusing specifically on Heart Failure, Pneumonia, Hip/Knee Replacements, and Heart Attacks, we were able to take an in depth look at medical data and develop the results detailed below.
 
 
 ## Tools and Technology Used for Analysis
