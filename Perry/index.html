@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" />
   <!-- Our CSS -->
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" href="css/d3Style.css">
 
   <div class="header jumbotron text-center" >
     <h1 style="color: rgb(85, 83, 83);">Value of Hospital Care Dashboard</h1>
@@ -50,6 +51,11 @@
           <div id="bar"></div>
         </div>
         <div class="col-md-5">
+          <div id="info"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
           <div id="scatter"></div>
         </div>
       </div>
@@ -75,11 +81,15 @@
   <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js" integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q==" crossorigin=""></script>
   
   <!-- Our code -->
-
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
   <script type="text/javascript" src="./js/leaflet-heat.js"></script>
   <script src="./js/logic.js"></script>
   <!-- <script src="./js/heatmap.js"></script> -->
   <script src="./js/plot.js"></script>
+  <script type="text/javascript" src="js/scatter.js"></script>
 </body>
 
 <footer>
