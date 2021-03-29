@@ -9,7 +9,7 @@ from flask import Flask, jsonify
 from flask_cors import CORS, cross_origin
 
 #set up database
-rds_connection_string = "postgres:pear12@localhost:5432/project2"
+rds_connection_string = "postgres:postgres@localhost:5432/project2_db"
 engine = create_engine(f'postgresql://{rds_connection_string}')
 
 Base = automap_base()
@@ -52,17 +52,17 @@ def _corsify_actual_response(response):
 @app.route("/api/v1.0/all_data")
 def all_data():
     # Create our session (link) from Python to the DB
-    result = engine.execute("""SELECT voc.zip_code, 
+    result = engine.execute("""SELECT value.zip_code, 
                                     sum(denominator) as Denominator, 
                                     round(avg(payment),0) as avg_Payment, 
                                     value_code, median_income, 
                                     latitude, 
                                     longitude
-                                FROM voc
-                                LEFT JOIN census ON census.zip_code = voc.zip_code
-                                LEFT JOIN zipcode ON zipcode.zip = voc.zip_code
-                                Group By voc.zip_code, value_code, census.median_income, latitude, longitude
-                                Order By voc.zip_code;""")
+                                FROM value
+                                LEFT JOIN census ON census.zip_code = value.zip_code
+                                LEFT JOIN zipcode ON zipcode.zip = value.zip_code
+                                Group By value.zip_code, value_code, census.median_income, latitude, longitude
+                                Order By value.zip_code;""")
 
     # Convert list of tuples into normal list
     all_ad = []
@@ -86,18 +86,18 @@ def _corsify_actual_response(response):
 @app.route("/api/v1.0/heart_failure")
 def heart_failure():
     # Create our session (link) from Python to the DB
-    result = engine.execute("""SELECT voc.zip_code, 
+    result = engine.execute("""SELECT value.zip_code, 
                                     sum(denominator) as Denominator, 
                                     round(avg(payment),0) as avg_Payment, 
                                     value_code, median_income, 
                                     latitude, 
                                     longitude
-                                FROM voc
-                                LEFT JOIN census ON census.zip_code = voc.zip_code
-                                LEFT JOIN zipcode ON zipcode.zip = voc.zip_code
+                                FROM value
+                                LEFT JOIN census ON census.zip_code = value.zip_code
+                                LEFT JOIN zipcode ON zipcode.zip = value.zip_code
                                 WHERE value_code = 'HF'
-                                Group By voc.zip_code, value_code, census.median_income, latitude, longitude
-                                Order By voc.zip_code;""")
+                                Group By value.zip_code, value_code, census.median_income, latitude, longitude
+                                Order By value.zip_code;""")
 
     # Convert list of tuples into normal list
     all_hf = []
@@ -121,18 +121,18 @@ def _corsify_actual_response(response):
 @app.route("/api/v1.0/hip_knee")
 def hip_knee():
     # Create our session (link) from Python to the DB
-    result = engine.execute("""SELECT voc.zip_code, 
+    result = engine.execute("""SELECT value.zip_code, 
                                     sum(denominator) as Denominator, 
                                     round(avg(payment),0) as avg_Payment, 
                                     value_code, median_income, 
                                     latitude, 
                                     longitude
-                                FROM voc
-                                LEFT JOIN census ON census.zip_code = voc.zip_code
-                                LEFT JOIN zipcode ON zipcode.zip = voc.zip_code
+                                FROM value
+                                LEFT JOIN census ON census.zip_code = value.zip_code
+                                LEFT JOIN zipcode ON zipcode.zip = value.zip_code
                                 WHERE value_code = 'HIP_KNEE'
-                                Group By voc.zip_code, value_code, census.median_income, latitude, longitude
-                                Order By voc.zip_code;""")
+                                Group By value.zip_code, value_code, census.median_income, latitude, longitude
+                                Order By value.zip_code;""")
 
     # Convert list of tuples into normal list
     all_hk = []
@@ -155,18 +155,18 @@ def _corsify_actual_response(response):
 @app.route("/api/v1.0/pneumonia")
 def pneumonia():
     # Create our session (link) from Python to the DB
-    result = engine.execute("""SELECT voc.zip_code, 
+    result = engine.execute("""SELECT value.zip_code, 
                                     sum(denominator) as Denominator, 
                                     round(avg(payment),0) as avg_Payment, 
                                     value_code, median_income, 
                                     latitude, 
                                     longitude
-                                FROM voc
-                                LEFT JOIN census ON census.zip_code = voc.zip_code
-                                LEFT JOIN zipcode ON zipcode.zip = voc.zip_code
+                                FROM value
+                                LEFT JOIN census ON census.zip_code = value.zip_code
+                                LEFT JOIN zipcode ON zipcode.zip = value.zip_code
                                 WHERE value_code = 'PN'
-                                Group By voc.zip_code, value_code, census.median_income, latitude, longitude
-                                Order By voc.zip_code;""")
+                                Group By value.zip_code, value_code, census.median_income, latitude, longitude
+                                Order By value.zip_code;""")
 
     # Convert list of tuples into normal list
     all_pn = []
@@ -190,18 +190,18 @@ def _corsify_actual_response(response):
 @app.route("/api/v1.0/heart_attack")
 def heart_attack():
     # Create our session (link) from Python to the DB
-    result = engine.execute("""SELECT voc.zip_code, 
+    result = engine.execute("""SELECT value.zip_code, 
                                     sum(denominator) as Denominator, 
                                     round(avg(payment),0) as avg_Payment, 
                                     value_code, median_income, 
                                     latitude, 
                                     longitude
-                                FROM voc
-                                LEFT JOIN census ON census.zip_code = voc.zip_code
-                                LEFT JOIN zipcode ON zipcode.zip = voc.zip_code
+                                FROM value
+                                LEFT JOIN census ON census.zip_code = value.zip_code
+                                LEFT JOIN zipcode ON zipcode.zip = value.zip_code
                                 WHERE value_code = 'AMI'
-                                Group By voc.zip_code, value_code, census.median_income, latitude, longitude
-                                Order By voc.zip_code;""")
+                                Group By value.zip_code, value_code, census.median_income, latitude, longitude
+                                Order By value.zip_code;""")
 
     # Convert list of tuples into normal list
     all_ami = []
@@ -232,8 +232,8 @@ def national_stats():
                                 round(avg(median_income)) as avg_med_inc,
                                 round(max(median_income)) as max_med_inc,
                                 round(min(median_income)) as min_med_inc
-                            FROM voc
-                            LEFT JOIN census ON census.zip_code = voc.zip_code
+                            FROM value
+                            LEFT JOIN census ON census.zip_code = value.zip_code
                             Group By value_code
                             Order By value_code; """)
 
@@ -242,10 +242,10 @@ def national_stats():
     for value_code,total_cases, avg_payment, max_payment, min_payment, avg_med_inc, max_med_inc, min_med_inc in result:
         all_nat_dict = {}
         all_nat_dict["Value Code"] = value_code
-        all_nat_dict["Total Cases"] = total_cases
+        all_nat_dict["Total Cases"] = int(total_cases)
         all_nat_dict["Avg Payment"] = float(avg_payment)
-        all_nat_dict["Max Payment"] = max_payment
-        all_nat_dict["Min Payment"] = min_payment
+        all_nat_dict["Max Payment"] = float(max_payment)
+        all_nat_dict["Min Payment"] = float(min_payment)
         all_nat_dict["Avg Median Income"] = float(avg_med_inc)
         all_nat_dict["Max Median Income"] = float(max_med_inc)
         all_nat_dict["Min Median Income"] = float(min_med_inc)
