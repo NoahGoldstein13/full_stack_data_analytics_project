@@ -20,7 +20,7 @@
 </head>
 
 <body>
-  <div class="container">
+  <div class="container-fluid">
     <div>
       <br>
       <br>
@@ -37,7 +37,10 @@
           <div class="well">
             <h5>Value of Care</h5> 
             <h6>Category:</h6>
-            <select id="selDataset" onchange="optionChanged(this.value)"></select>
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <select id="selDataset" onchange="optionChanged(this.value)"></select>
+            </button>
+              
           </div>
           <div class="panel panel-primary">
             <div class="panel-heading">
