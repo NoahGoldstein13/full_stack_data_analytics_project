@@ -21,8 +21,9 @@ function buildNationalSummary(care) {
 };  
 
 function buildHeatmap(care) {
-
-  var myMap = L.map("heatmap", {
+  
+  if (myMap) {myMap.off(); myMap.remove();}
+    var myMap = L.map("heatmap", {
       center: [37.0902, -95.7129],
       zoom: 4.3
   });
@@ -97,6 +98,7 @@ function init() {
   // Event Listener
   function optionChanged(newCareType) {
   buildNationalSummary(newCareType);
+  
   buildHeatmap(newCareType);
 
   };
