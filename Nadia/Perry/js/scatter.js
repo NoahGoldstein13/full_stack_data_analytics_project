@@ -3,9 +3,9 @@ const xLabel = "Median Income";
 const yValue = d => d.denominator * d.avg_pmt;
 const yLabel = "Total Medicare Payments";
 
-var margin = {top: 20, right: 30, bottom: 120, left: 120},
-    width = 450 - margin.left - margin.right,
-    height = 300 - margin.top - margin.bottom;
+var margin = {top: 20, right: 30, bottom: 120, left: 100},
+    width = 750 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 const svg = d3.select("#scatter")
@@ -19,13 +19,18 @@ const svg = d3.select("#scatter")
 //Read the data
 d3.json("http://127.0.0.1:5000/api/v1.0/heart_failure").then ((data) => {
 
-  console.log(data);
-
-  data.forEach(function(data) {
-    data.denominator = +data.denominator;
-    data.avg_pmt = +data.avg_pmt;
-    data.med_inc = +data.med_inc;
-    });
+    data.forEach((d, i) => {
+        data.push({denominator: +d.denominator, avg_pmt: +d.avg_pmt, med_inc: +d.med_inc, zip_code: d.zip_code});
+      });
+      // once done iterating over dataset we can use it
+      console.log(data);
+   
+//   data.forEach(function(data) {
+//     data.denominator = +data.denominator;
+//     data.avg_pmt = +data.avg_pmt;
+//     data.med_inc = +data.med_inc;
+//     data.zip_code= data.zip_code;
+//     })
 
   // Add X axis
   var x = d3.scaleLinear()
@@ -59,8 +64,8 @@ d3.json("http://127.0.0.1:5000/api/v1.0/heart_failure").then ((data) => {
     .data(data)
     .enter()
     .append("circle")
-        .attr("cx", d => { return x(xValue); })
-        .attr("cy", d => { return y(yValue); })
+        .attr("cx", d => { return x(d.med_inc); })
+        .attr("cy", d => { return y(d.denominator * d.avg_pmt); })
         .attr("r", 8)
         .attr('class', 'stateCircle');
 
@@ -70,8 +75,8 @@ d3.json("http://127.0.0.1:5000/api/v1.0/heart_failure").then ((data) => {
 //     .enter()
 //     .append("text")
 //       .attr("dy", "0.35em")
-//       .attr("x", d => { return x(xValue); })
-//       .attr("y", d => { return y(yValue); })
+//       .attr("x", d => { return x(d.med_inc); })
+//       .attr("y", d => { return y(d.denominator * d.avg_pmt); })
 //       .text(d => { return d.zip_code; })
 //       .attr('class', 'stateText')
 //       .attr("font-size", "10px");
@@ -80,8 +85,9 @@ d3.json("http://127.0.0.1:5000/api/v1.0/heart_failure").then ((data) => {
   var toolTip = d3.tip() 
   .attr("class", "d3-tip")
   .html(function(d) {
-    return  `${data.zip_code}<br>Median Income: ${xValue}<br>Total Payments: ${yValue}<br>`; 
-});
+    return  `${data.zip_code}<br>Median Income: ${d.med_inc}<br>Total Payments: ${d.denominator * d.avg_pmt}<br>`; 
+})
+// .catch(() => console.log("could not load a file"));
 
 // Create tooltip in the chart
 svg.call(toolTip);
