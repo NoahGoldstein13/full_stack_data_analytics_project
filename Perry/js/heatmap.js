@@ -12,8 +12,6 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     accessToken: API_KEY
 }).addTo(myMap);
   
-https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmV5bm8yNTUiLCJhIjoiY2ttNWpkNjlrMGVzdjJvcWI4N3hqdGJxcyJ9.FLlSJjCVyqhFXBZvmuMHOg
-
 function buildHeatmap(care) {
     
     var url = "http://127.0.0.1:5000//api/v1.0/all_data";
@@ -52,8 +50,18 @@ function init() {
 
     var selector = d3.select("#selDataset");
 
-    const firstSample = "AMI";
+    d3.json("http://127.0.0.1:5000//api/v1.0/national_stats").then((data) => {
+    var careNames = []; 
+    data.forEach((datapoint) => {
+
+      careNames.push(datapoint["Value Code"])
+    
+    });
+  
+    const firstSample = careNames[0];
+
     buildHeatmap(firstSample)
+    });
 };
 
 // Event Listener
