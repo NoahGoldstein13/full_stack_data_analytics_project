@@ -1,11 +1,11 @@
 const xValue = d => d.med_inc;
-const xLabel = "Median Income";
+const xLabel = "Median Income (USD)";
 const yValue = d => d.denominator * d.avg_pmt;
-const yLabel = "Total Medicare Payments";
+const yLabel = "Total Medicare Payments (USD)";
 
-var margin = {top: 20, right: 30, bottom: 120, left: 100},
-    width = 750 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+var margin = {top: 20, right: 30, bottom: 120, left: 120},
+    width = 950 - margin.left - margin.right,
+    height = 650 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 const svg = d3.select("#scatter")
@@ -32,6 +32,15 @@ d3.json("http://127.0.0.1:5000/api/v1.0/heart_failure").then ((data) => {
 //     data.zip_code= data.zip_code;
 //     })
 
+    // data %>%
+    // sample_frac(0.05) %>%
+    // ggplot( aes(x=x, y=y)) +
+    // geom_point(color="#69b3a2", size=2) +
+    // theme_ipsum() +
+    // theme(
+    //     legend.position="none"
+    // )
+
   // Add X axis
   var x = d3.scaleLinear()
     .domain(d3.extent(data, xValue)).nice()
@@ -54,19 +63,21 @@ d3.json("http://127.0.0.1:5000/api/v1.0/heart_failure").then ((data) => {
     .append('text')
     .attr('class', 'axis-label')
     .attr('x', -height / 2)
-    .attr('y', -60)
+    .attr('y', -90)
     .attr('transform', `rotate(-90)`)
     .style('text-anchor', 'middle')
     .text(yLabel);
 
   // Add circles
-  var circlesGroup = svg.selectAll("circle")
+  var circlesGroup = svg.selectAll("dot")
     .data(data)
     .enter()
     .append("circle")
+    .filter(d => {return d.med_inc < 200000 & d.med_inc > 0})
+    .filter(d => {return (d.denominator * d.avg_pmt) < 45000000 })
         .attr("cx", d => { return x(d.med_inc); })
         .attr("cy", d => { return y(d.denominator * d.avg_pmt); })
-        .attr("r", 8)
+        .attr("r", 5)
         .attr('class', 'stateCircle');
 
 //   // Add circle labels
@@ -85,7 +96,7 @@ d3.json("http://127.0.0.1:5000/api/v1.0/heart_failure").then ((data) => {
   var toolTip = d3.tip() 
   .attr("class", "d3-tip")
   .html(function(d) {
-    return  `${data.zip_code}<br>Median Income: ${d.med_inc}<br>Total Payments: ${d.denominator * d.avg_pmt}<br>`; 
+    return  `Median Income: ${d.med_inc}<br>Total Payments: ${d.denominator * d.avg_pmt}<br>`; 
 })
 // .catch(() => console.log("could not load a file"));
 
