@@ -3,6 +3,12 @@
     font-size: 20pt;
     font-family: sans-serif;
   }
+
+.x-axis-label {
+fill: black;
+font-size: 20pt;
+font-family: sans-serif;
+}
   
   .aText {
     font-family: sans-serif;

@@ -33,7 +33,7 @@ d3.json("http://127.0.0.1:5000/api/v1.0/heart_failure").then ((data) => {
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(x))
     .append('text')
-    .attr('class', 'axis-label')
+    .attr('class', 'x-axis-label')
     .attr('x', width / 2)
     .attr('y', 65)
     .text(xLabel);
@@ -63,6 +63,22 @@ d3.json("http://127.0.0.1:5000/api/v1.0/heart_failure").then ((data) => {
         .attr("cy", d => { return y(d.denominator * d.avg_pmt); })
         .attr("r", 4)
         .attr('class', 'stateCircle');
+
+    // x.domain([0, 200000])
+    // svg.select(".x-axis-label")
+    //     .transition()
+    //     .duration(2000)
+    //     .attr("opacity", "1")
+    //     .call(d3.axisBottom(x));
+
+    // svg.selectAll("circle")
+    //     .transition()
+    //     .delay(function(d,i){return(i*3)})
+    //     .duration(2000)
+    //     .filter(d => {return d.med_inc < 200000 & d.med_inc > 0})
+    //     .filter(d => {return (d.denominator * d.avg_pmt) < 45000000 })
+    //         .attr("cx", d => { return x(d.med_inc); })
+    //         .attr("cy", d => { return y(d.denominator * d.avg_pmt); })
 
   // Initialize tooltip
   var toolTip = d3.tip() 
