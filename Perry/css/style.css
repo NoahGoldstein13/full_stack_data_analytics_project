@@ -86,3 +86,9 @@ h5, h6 {
     opacity: 1;
   }
 }
+
+.col-md-12 {
+
+  width:840px; 
+  height: 400px;
+}

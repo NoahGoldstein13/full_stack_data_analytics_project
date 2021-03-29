@@ -1,6 +1,6 @@
 var myMap = L.map("heatmap", {
     center: [37.0902, -95.7129],
-    zoom: 13
+    zoom: 4.3
   });
 
 L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
@@ -12,6 +12,8 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     accessToken: API_KEY
 }).addTo(myMap);
   
+https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmV5bm8yNTUiLCJhIjoiY2ttNWpkNjlrMGVzdjJvcWI4N3hqdGJxcyJ9.FLlSJjCVyqhFXBZvmuMHOg
+
 function buildHeatmap(care) {
     
     var url = "http://127.0.0.1:5000//api/v1.0/all_data";
@@ -31,17 +33,18 @@ function buildHeatmap(care) {
         var lat = care_array[i].Latitude;
         var lng = care_array[i].Longitude;
         
-        if (lat !== null && lng !== null) {
+        if (lat!== null && lng !== null) {
             heatArray.push([lat, lng]);
         }
         }
         console.log(heatArray);
 
         var heat = L.heatLayer(heatArray, {
+        
         radius: 20,
-        blur: 35
+        blur: 1
         }).addTo(myMap);
-
+        console.log(heat)
     });
 };
 
