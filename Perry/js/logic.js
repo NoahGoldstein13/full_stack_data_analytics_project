@@ -57,14 +57,14 @@ function buildHeatmap(care) {
           heatArray.push([lat, lng]);
       }
       }
-      console.log(heatArray);
+      //console.log(heatArray);
 
       var heat = L.heatLayer(heatArray, {
       
       radius: 20,
       blur: 1
       }).addTo(myMap);
-      console.log(heat)
+      //console.log(heat)
   });
 };
 
