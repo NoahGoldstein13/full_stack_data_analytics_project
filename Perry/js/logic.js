@@ -49,8 +49,8 @@ function buildHeatmap(care) {
       var heatArray = [];
   
       for (var i = 0; i < care_array.length; i++) {
-      var lat = care_array[i].Latitude;
-      var lng = care_array[i].Longitude;
+      var lat = care_array[i].latitude;
+      var lng = care_array[i].longitude;
       
       if (lat!== null && lng !== null) {
           heatArray.push([lat, lng]);
@@ -93,12 +93,11 @@ function init() {
   });
 }
 
-  // Event Listener
-  function optionChanged(newCareType) {
-  buildNationalSummary(newCareType);
-  
-  buildHeatmap(newCareType);
+// Event Listener
+function optionChanged(newCareType) {
+buildNationalSummary(newCareType);
+buildHeatmap(newCareType);
 
-  };
+};
 
 init();
