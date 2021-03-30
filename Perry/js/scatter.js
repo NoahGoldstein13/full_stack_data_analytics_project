@@ -128,9 +128,9 @@ function init() {
   });
 };
 
-  // Event Listener
-  function optionChanged(newCareType) {
-  buildScatterPlot(newCareType);
-  };
+// Event Listener
+function optionChanged(newCareType) {
+buildScatterPlot(newCareType);
+};
 
-  init();
+init();

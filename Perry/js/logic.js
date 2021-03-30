@@ -93,12 +93,11 @@ function init() {
   });
 }
 
-  // Event Listener
-  function optionChanged(newCareType) {
-  buildNationalSummary(newCareType);
-  
-  buildHeatmap(newCareType);
+// Event Listener
+function optionChanged(newCareType) {
+buildNationalSummary(newCareType);
+buildHeatmap(newCareType);
 
-  };
+};
 
 init();
