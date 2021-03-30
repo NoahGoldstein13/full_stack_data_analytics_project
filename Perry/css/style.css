@@ -19,9 +19,12 @@ footer {
   top: 0;
 }
 
-
+.bar {
+  padding-bottom: 50px;
+}
 .panel {
   width = 1000px
+  margin-left: 100px;
 }
 html, body {
   height: 100%;
@@ -33,14 +36,37 @@ html, body {
 }
 
 .col-md-5 {
-  padding-left: 70px;
+  padding-left: 50px;
   width: 500px;
 }
 .card-body {
-  height: 400px;
-  width: 500px;
+  height: 500px;
+  width: 400px;
   justify-content: center;
   align-content: center;
+}
+
+.summary-panel{
+  margin-right: 0px;
+  margin-left:95px;
+}
+.panel-body-summary {
+  padding-left: 25px;
+  padding-top: 15px;
+  padding-right: 20px;
+}
+
+.btn {
+  margin-left: 95px;
+  margin-top: 50px;
+  height: 70px;
+  width: 150px;
+}
+
+.btn-primary {
+  padding-top: 20;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .card-text {
@@ -109,6 +135,11 @@ h5, h6 {
 
   width: 900px; 
   height: 700px;
+}
+
+.xtick {
+  font-weight: bold;
+  font-size:
 }
 
 .axis-label {

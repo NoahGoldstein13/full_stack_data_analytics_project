@@ -18,16 +18,44 @@ function buildBarPlot() {
     var trace1 = {
         x: ['Heart Attack', 'Heart Failure', 'Hip/Knee', 'Pneumonia'],
         y: [careValues[0], careValues[1], careValues[2], careValues[3]], 
-        type: "bar"
-        
+        type: "bar"  
     };
 
     var data = [trace1];
     console.log(data);
     var layout = {
-        title: "Total Cost Per Care Category",
-        xaxis: {title: "Care Category"},
-        yaxis: {title: "Total Cost"}
+        height: 600,
+        width: 670,
+        xaxis: {
+            title: {
+                text: "Care Category",
+                font: {
+                    family: 'Arial, sans-serif',
+                    size: 12,
+                }
+            },
+            showticklabels: true,
+            tickangle: 0,
+            tickfont: {
+                family: 'Arial, sans-serif',
+                size: 10,
+            }
+        },
+        yaxis: {
+            title: {
+                text: "Total Expenditure ($)",
+                font: {
+                    family: 'Arial, sans-serif',
+                    size: 12,
+                }
+            },
+            showticklabels: true,
+            tickangle: 0,
+            tickfont: {
+                family: 'Arial, sans-serif',
+                size: 10,
+            }
+        },
     };
 
     Plotly.newPlot("bar", data, layout);
