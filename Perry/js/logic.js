@@ -9,8 +9,6 @@ function buildNationalSummary(care) {
       );
       
     var panel = d3.select("#voc-natsum");
-
-    panel.html("");
     
     Object.entries(care_array[0]).forEach(([key, value]) => {
 
@@ -43,7 +41,7 @@ function buildHeatmap(care) {
 
       var care_array = response.filter(datapoint => 
           
-          datapoint["Value Code"] == care 
+          datapoint.val_code == care 
           );
 
       //console.log(care_array);
