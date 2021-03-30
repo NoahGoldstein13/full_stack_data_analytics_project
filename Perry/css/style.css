@@ -26,6 +26,10 @@ footer {
   width = 1000px
   margin-left: 100px;
 }
+
+.panel-body {
+  padding-top: 30px;
+}
 html, body {
   height: 100%;
   padding: 0;

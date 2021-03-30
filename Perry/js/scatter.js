@@ -27,7 +27,7 @@ function buildScatterPlot(care) {
             care_array.push({denominator: +d.denominator, avg_pmt: +d.avg_pmt, med_inc: +d.med_inc, zip_code: d.zip_code});
           });
           // once done iterating over dataset we can use it
-          console.log(care_array);
+          //console.log(care_array);
 
       // Add X axis
       var x = d3.scaleLinear()

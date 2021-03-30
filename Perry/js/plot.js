@@ -12,7 +12,7 @@ function buildBarPlot() {
     
     });
     
-    console.log(careValues);
+    //console.log(careValues);
 
     // Creating traces
     var trace1 = {
@@ -22,7 +22,7 @@ function buildBarPlot() {
     };
 
     var data = [trace1];
-    console.log(data);
+    //console.log(data);
     var layout = {
         height: 550,
         width: 670,

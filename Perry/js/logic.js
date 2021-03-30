@@ -9,12 +9,48 @@ function buildNationalSummary(care) {
       );
       
     var panel = d3.select("#voc-natsum");
-    
-    Object.entries(care_array[0]).forEach(([key, value]) => {
+    var care_array_filtered = care_array[0];
+    console.log(Object.values(care_array_filtered));
 
-      panel.append("h9").text(`${key}: ${value}`)
+    // for (const [key, value] of Object.entries(care_array_filtered)) {
+    //   panel.append("h9").text(`${key}: ${value}`+ "<br>");
       
-    }); 
+    // }
+    panel.append("h9").text(`Care Type: ${care_array_filtered["Value Code"]}`);
+    panel.append("br");
+    panel.append("br");
+    panel.append("b").text("Hospital Revenue / Patient");
+    panel.append("br");
+    panel.append("h9").text(`Total Cases: ${care_array_filtered["Total Cases"]}`);
+    panel.append("br");
+    panel.append("h9").text(`Average Payment: ${care_array_filtered["Avg Payment"]}`);
+    panel.append("br");
+    panel.append("h9").text(`Maximum Payment: ${care_array_filtered["Max Payment"]}`);
+    panel.append("br");
+    panel.append("h9").text(`Minium Payment: ${care_array_filtered["Min Payment"]}`);
+    panel.append("br");
+    panel.append("br");
+    panel.append("b").text("Median Income");
+    panel.append("br");
+    panel.append("h9").text(`Average Median Income: ${care_array_filtered["Avg Median Income"]}`);
+    panel.append("br");
+    panel.append("h9").text(`Maximum Median Income: ${care_array_filtered["Max Median Income"]}`);
+    panel.append("br");
+    panel.append("h9").text(`Minimum Median Income: ${care_array_filtered["Min Median Income"]}`);
+
+
+    // for(i = 0; i < Object.keys(care_array_filtered).length; i++) {
+    //     console.log("Hi");
+    //     panel.append("h9").text(`${key}: ${value}`);
+    //     panel.append("h9").text("");
+          
+    // };
+
+    // Object.entries(care_array[0]).forEach(([key, value]) => {
+
+    //   panel.append("h9").text(`${key}: ${value}`)
+      
+    // }); 
   });
 };  
 
