@@ -55,20 +55,27 @@ In the wake of a global pandemic, public health and healthcare have risen to the
 ---
 ![Screenshot](Noah/top_third)
 ![Screenshot](Noah/middle_third)
-![Screenshot]()
+![Screenshot](Noah/bottom_third)
 
 
 ## Summary of Findings
 ---
 #### Key Insights From Dashboard
-1. TBD
-2. TBD
-3. TBD
-#### Main Complications While Developing Full Stack Application
-1. TBD
+1. When analyzing the heatmap visualization we noticed that the Midwest was rather unpopulated compared to the East and West coasts. We attributed this observation to the fact that the middle third of the United States is significantly less populous than the coasts.
+2. When analyzing the scatter plot, we noticed that although the density of zipcodes with Medicare/Medicaid payments is most populous in the $25,000 - $80,000 median household income range, the maximum payments by zipcode is actually highest in the more wealthy median zipcode areas. One potential reason for this observation could be that there is a high density of wealthier elderly patients utilizing Medicare/Medicaid in those regions.
+3. Pneumonia was the highest grossing Medicare/Medicaid primary ailment between 2016-2019
+#### Main Roadblocks While Developing Full Stack Application
+1. While developing our table schema in PostgreSQL, we noticed that our zipcode fields dropped the leading "0" for all instances starting with "0" or "00" from categorizing the field as numeric data rather than string data.
 2. TBD
 3. TBD
 #### Limitations to Our Data
-1. TBD
-2. TBD
+1. The data we utilized only provides gross Medicare/Medicaid payments and does not include self-pay or private insurance reimbursements. The percentage (%) breakdown between Medicare/Medicaid, self-pay and private insurance reimbursements may provide drastically different insights based upon the hospital and population that it serves.
+2. The data utilized was gathered from 2016 - 2019, so it is slightly dated
 3. TBD
+#### Additional Thoughts to be Explored Further
+1. Average population age per zipcode and its relationship to Medicare/Medicaid payments
+2. Variation between care facilities accepting Medicare/Medicaid vs private-only
+3. Correlation between Medicare/Medicaid payments with median household income
+4. Average cost by primary ailment category
+5. Analyze more current data to see how COVID-19 would have impacted our results
+6. Analyze similar topics categorized by age groups rather than by zipcode or median income
