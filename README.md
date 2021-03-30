@@ -51,15 +51,10 @@ In the wake of a global pandemic, public health and healthcare have risen to the
 ![Screenshot](Noah/QuickDBDv2.JPG)
 
 
-## Dashboard View
+## Dashboard Charts & Visualizations
 ---
-![Screenshot]()
-
-
-## Charts & Visualizations (safjas)
----
-![Screenshot]()
-![Screenshot]()
+![Screenshot](Noah/top_third)
+![Screenshot](Noah/middle_third)
 ![Screenshot]()
 
 
