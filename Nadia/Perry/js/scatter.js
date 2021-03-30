@@ -57,6 +57,9 @@ d3.json("http://127.0.0.1:5000/api/v1.0/heart_failure").then ((data) => {
     .data(data)
     .enter()
     .append("circle")
+    .transition()
+    .delay(function(d,i){return(i*3)})
+    .duration(2000)
     .filter(d => {return d.med_inc < 200000 & d.med_inc > 0})
     .filter(d => {return (d.denominator * d.avg_pmt) < 45000000 })
         .attr("cx", d => { return x(d.med_inc); })
@@ -96,7 +99,7 @@ circlesGroup.on("mouseover", function(data) {
   d3.select(this)
   .transition()
   .duration(1000)
-  .attr("r", 7);
+  .attr("r", 10);
 })
   // on mouseout event
   .on("mouseout", function(data, index) {
@@ -107,3 +110,12 @@ circlesGroup.on("mouseover", function(data) {
     .attr("r", 2);
   })
 });
+
+// svg.selectAll("circle")
+//         .transition()
+//         .delay(function(d,i){return(i*3)})
+//         .duration(2000)
+//         .filter(d => {return d.med_inc < 200000 & d.med_inc > 0})
+//         .filter(d => {return (d.denominator * d.avg_pmt) < 45000000 })
+//             .attr("cx", d => { return x(d.med_inc); })
+//             .attr("cy", d => { return y(d.denominator * d.avg_pmt); })

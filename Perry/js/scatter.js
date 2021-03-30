@@ -61,6 +61,9 @@ function buildScatterPlot(care) {
         .data(care_array)
         .enter()
         .append("circle")
+        .transition()
+        .delay(function(d,i){return(i*3)})
+        .duration(2000)
         .filter(d => {return d.med_inc < 200000 & d.med_inc > 0})
         .filter(d => {return (d.denominator * d.avg_pmt) < 45000000 })
             .attr("cx", d => { return x(d.med_inc); })
@@ -68,21 +71,6 @@ function buildScatterPlot(care) {
             .attr("r", 4)
             .attr('class', 'stateCircle');
 
-        // x.domain([0, 200000])
-        // svg.select(".x-axis-label")
-        //     .transition()
-        //     .duration(2000)
-        //     .attr("opacity", "1")
-        //     .call(d3.axisBottom(x));
-
-        // svg.selectAll("circle")
-        //     .transition()
-        //     .delay(function(d,i){return(i*3)})
-        //     .duration(2000)
-        //     .filter(d => {return d.med_inc < 200000 & d.med_inc > 0})
-        //     .filter(d => {return (d.denominator * d.avg_pmt) < 45000000 })
-        //         .attr("cx", d => { return x(d.med_inc); })
-        //         .attr("cy", d => { return y(d.denominator * d.avg_pmt); })
 
       // Initialize tooltip
       var toolTip = d3.tip() 
