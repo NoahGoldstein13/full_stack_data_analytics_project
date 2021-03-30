@@ -24,7 +24,7 @@ function buildBarPlot() {
     var data = [trace1];
     console.log(data);
     var layout = {
-        height: 600,
+        height: 550,
         width: 670,
         xaxis: {
             title: {
