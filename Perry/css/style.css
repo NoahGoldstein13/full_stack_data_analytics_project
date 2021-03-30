@@ -19,6 +19,7 @@ footer {
   top: 0;
 }
 
+
 .panel {
   width = 1000px
 }
@@ -28,12 +29,28 @@ html, body {
   margin: 0;
   margin-left: 18px;
   margin-top: 100px;
+  margin-right: 18px;
 }
 
+.col-md-5 {
+  padding-left: 70px;
+  width: 500px;
+}
+.card-body {
+  height: 400px;
+  width: 500px;
+  justify-content: center;
+  align-content: center;
+}
+
+.card-text {
+  text-justify: center;
+  align-content: center;
+}
 .container {
   position: relative;
   min-height: 100%;
-  padding-bottom: 130px;
+  padding-bottom: 140px;
   overflow: auto;
 }
 
@@ -90,20 +107,22 @@ h5, h6 {
 
 .col-md-12 {
 
-  width:840px; 
-  height: 400px;
+  width: 900px; 
+  height: 700px;
 }
 
 .axis-label {
   fill: black;
-  font-size: 13pt;
+  font-size: 10pt;
   font-family: sans-serif;
+  font-weight: bold;
 }
 
 .x-axis-label {
 fill: black;
-font-size: 13pt;
+font-size: 10pt;
 font-family: sans-serif;
+font-weight: bold;
 }
 
 .aText {
@@ -166,7 +185,7 @@ font-family: sans-serif;
 }
 
 .info {
-  border: 1px solid blue;
+  border: 1px solid rgb(0, 0, 54);
 }
 
 

@@ -12,7 +12,7 @@ function buildNationalSummary(care) {
     
     Object.entries(care_array[0]).forEach(([key, value]) => {
 
-      panel.append("h9").text(`${key}: ${value}`);
+      panel.append("h9").text(`${key}: ${value}`)
       
     }); 
   });

@@ -6,7 +6,7 @@ function buildScatterPlot(care) {
   const yLabel = "Total Medicare Payments (USD)";
 
   var margin = {top: 20, right: 30, bottom: 120, left: 120},
-      width = 950 - margin.left - margin.right,
+      width = 1300 - margin.left - margin.right,
       height = 650 - margin.top - margin.bottom;
 
   // append the svg object to the body of the page
