@@ -58,7 +58,7 @@ function buildScatterPlot(care) {
 
       // Add circles
       var circlesGroup = svg.selectAll("dot")
-        .care_array(care_array)
+        .data(care_array)
         .enter()
         .append("circle")
         .filter(d => {return d.med_inc < 200000 & d.med_inc > 0})
