@@ -165,6 +165,10 @@ font-family: sans-serif;
   font-size: 10pt;
 }
 
+.info {
+  border: 1px solid blue;
+}
+
 
 /* Mobile Rules */
 @media screen and (max-width: 530px) {
