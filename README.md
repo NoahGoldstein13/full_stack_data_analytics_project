@@ -53,9 +53,9 @@ In the wake of a global pandemic, public health and healthcare have risen to the
 
 ## Dashboard Charts & Visualizations
 ---
-![Screenshot](Noah/top_third)
-![Screenshot](Noah/middle_third)
-![Screenshot](Noah/bottom_third)
+![Screenshot](Noah/top_third.png)
+![Screenshot](Noah/middle_third.png)
+![Screenshot](Noah/bottom_third.png)
 
 
 ## Summary of Findings
