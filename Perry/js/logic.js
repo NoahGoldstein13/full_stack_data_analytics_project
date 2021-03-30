@@ -11,13 +11,12 @@ function buildNationalSummary(care) {
       datapoint["Value Code"] == care 
       );
      
-    
+
     panel = d3.select("#voc-natsum");
     console.log(panel)
     var care_array_filtered = care_array[0];
     //console.log(Object.values(care_array_filtered));
 
-    
     panel.append("h9").text(`Care Type: ${care_array_filtered["Value Code"]}`);
     panel.append("br");
     panel.append("br");
@@ -65,21 +64,24 @@ function buildHeatmap(care) {
   
   var url = "http://127.0.0.1:5000//api/v1.0/all_data";
   
+  care_array = []
   d3.json(url).then(function(response) {
 
-      var care_array = response.filter(datapoint => 
+      care_array = response.filter(datapoint => 
           
           datapoint.val_code == care 
           );
 
-      //console.log(care_array);
-  
+      //console.log(care_array[0]['med_inc']);
+      
       var heatArray = [];
-  
+      //console.log(heatArray);
       for (var i = 0; i < care_array.length; i++) {
       var lat = care_array[i].latitude;
       var lng = care_array[i].longitude;
-      
+      var avg_payment = care_array[i].avg_pmt;
+      var zip_code_all = care_array[i].zip_code;
+
       if (lat!== null && lng !== null) {
           heatArray.push([lat, lng]);
       }
@@ -93,7 +95,84 @@ function buildHeatmap(care) {
       }).addTo(myMap);
       //console.log(heat)
   });
-};
+
+  // var info = L.control();
+
+  // info.onAdd = function (map) {
+  //   this._div = L.DomUtil.create('div', 'info');
+  //   this.update();
+  //   return this._div;
+  // };
+  
+  // info.update = this._div.innerHTML(`<h4>Median Household Income</h4> Zipcode: <b>' ${care_array.zip_code} '</b><br/><b>Median Household Income:' ${care_array.med_inc}`);
+  
+  
+  // info.addTo(myMap);
+
+  // function getColor(d) {
+  //   return d > 100000 ? '#5e4fa2' :
+  //          d > 25000  ? '#3288bd' :
+  //          d > 20000  ? '#66c2a5' :
+  //          d > 15000  ? '#abdda4' :
+  //          d > 10000   ? '#e6f598' :
+  //          d > 5000   ? '#ffffbf' :
+  //          d > 1000  ? '#fee08b' :
+  //                     '#fdae61';
+  // }
+
+  // function style(feature) {
+  //   return {
+  //       weight: 2,
+  //       opacity: 1,
+  //       color: 'white',
+  //       dashArray: '3',
+  //       fillOpacity: 0.7,
+  //       fillColor: getColor(care_array[4])
+  //   };
+  // }
+
+  // function highlightFeature(e) {
+  //   var layer = e.target;
+
+  //   layer.setStyle({
+  //     weight: 3,
+  //     color: 'black',
+  //     dashArray: '',
+  //     fillOpacity: 0.7
+  //   });
+
+  //   if (!L.Browser.ie && !L.Browser.opera) {
+  //     layer.bringToFront();
+  //   }
+
+  //   info.update(layer.feature.properties);
+  // }
+
+  // var geojson;
+
+	// 	function resetHighlight(e) {
+	// 		geojson.resetStyle(e.target);
+	// 		info.update();
+	// 	}
+
+	// 	function zoomToFeature(e) {
+	// 		map.fitBounds(e.target.getBounds());
+	// 	}
+
+	// 	function onEachFeature(feature, layer) {
+	// 		layer.on({
+	// 			mouseover: highlightFeature,
+	// 			mouseout: resetHighlight,
+	// 			click: zoomToFeature
+	// 		});
+	// 	}
+
+	// 	geojson = L.geoJson(statesData, {
+	// 		style: style,
+	// 		onEachFeature: onEachFeature
+	// 	}).addTo(myMap);
+
+  };
 
 //build Scatter Plot
 function buildScatterPlot(care) { 
@@ -124,8 +203,6 @@ function buildScatterPlot(care) {
         care_array.forEach((d, i) => {
             care_array.push({denominator: +d.denominator, avg_pmt: +d.avg_pmt, med_inc: +d.med_inc, zip_code: d.zip_code});
           });
-          // once done iterating over dataset we can use it
-          //console.log(care_array);
 
       // Add X axis
       var x = d3.scaleLinear()
@@ -194,12 +271,6 @@ function buildScatterPlot(care) {
     })
   });
 };
-
-
-
-
-
-
 
 
 // Create Dropdown
