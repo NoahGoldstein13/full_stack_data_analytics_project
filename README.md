@@ -71,7 +71,7 @@ In the wake of a global pandemic, public health and healthcare have risen to the
 #### Limitations to Our Data
 1. The data we utilized only provides gross Medicare/Medicaid payments and does not include self-pay or private insurance reimbursements. The percentage (%) breakdown between Medicare/Medicaid, self-pay and private insurance reimbursements may provide drastically different insights based upon the hospital and population that it serves.
 2. The data utilized was gathered from 2016 - 2019, so it is slightly dated
-3. 
+3. There were approximately 50 zipcodes that did not have data fields populated 
 #### Additional Thoughts to be Explored Further
 1. Average population age per zipcode and its relationship to Medicare/Medicaid payments
 2. Variation between care facilities accepting Medicare/Medicaid vs private-only
