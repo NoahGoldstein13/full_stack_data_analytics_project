@@ -66,12 +66,12 @@ In the wake of a global pandemic, public health and healthcare have risen to the
 3. Pneumonia was the highest grossing Medicare/Medicaid primary ailment between 2016-2019
 #### Main Roadblocks While Developing Full Stack Application
 1. While developing our table schema in PostgreSQL, we noticed that our zipcode fields dropped the leading "0" for all instances starting with "0" or "00" from categorizing the field as numeric data rather than string data.
-2. TBD
-3. TBD
+2. Cross Origin integration proved challenging when pulling data into D3 from our Flask API
+3. We encountered difficulty with conflicting HTML and CSS coding when formatting our dashboard visualizations, bootstrap cards, svgs, and images
 #### Limitations to Our Data
 1. The data we utilized only provides gross Medicare/Medicaid payments and does not include self-pay or private insurance reimbursements. The percentage (%) breakdown between Medicare/Medicaid, self-pay and private insurance reimbursements may provide drastically different insights based upon the hospital and population that it serves.
 2. The data utilized was gathered from 2016 - 2019, so it is slightly dated
-3. TBD
+3. 
 #### Additional Thoughts to be Explored Further
 1. Average population age per zipcode and its relationship to Medicare/Medicaid payments
 2. Variation between care facilities accepting Medicare/Medicaid vs private-only
