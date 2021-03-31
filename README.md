@@ -16,6 +16,7 @@ In the wake of a global pandemic, public health and healthcare have risen to the
 * QuickDBD
 * SQL
 * PostgreSQL
+* APIs
 * Javascript
 * D3
 * Plotly
@@ -33,7 +34,8 @@ In the wake of a global pandemic, public health and healthcare have risen to the
 3. Push data to SQL database
 4. Create Flask API
 5. Pull data into browser using JavaScript
-6. Generate Dashboard using D3, MapBox, Plotly, etc.
+6. Generate Dashboard using D3, MapBox, Plotly, and Leaflet
+7. HTML and CSS formatting / organization
 
 
 ## Data Sources (1 CMS.gov Dataset, 1 Census.gov Dataset, 1 OpenDataSoft.com Dataset)
