@@ -88,6 +88,8 @@ function buildHeatmap(care) {
       }
       //console.log(heatArray);
 
+
+
       var heat = new L.heatLayer(heatArray, {
       
       radius: 20,
@@ -95,82 +97,6 @@ function buildHeatmap(care) {
       }).addTo(myMap);
       //console.log(heat)
   });
-
-  // var info = L.control();
-
-  // info.onAdd = function (map) {
-  //   this._div = L.DomUtil.create('div', 'info');
-  //   this.update();
-  //   return this._div;
-  // };
-  
-  // info.update = this._div.innerHTML(`<h4>Median Household Income</h4> Zipcode: <b>' ${care_array.zip_code} '</b><br/><b>Median Household Income:' ${care_array.med_inc}`);
-  
-  
-  // info.addTo(myMap);
-
-  // function getColor(d) {
-  //   return d > 100000 ? '#5e4fa2' :
-  //          d > 25000  ? '#3288bd' :
-  //          d > 20000  ? '#66c2a5' :
-  //          d > 15000  ? '#abdda4' :
-  //          d > 10000   ? '#e6f598' :
-  //          d > 5000   ? '#ffffbf' :
-  //          d > 1000  ? '#fee08b' :
-  //                     '#fdae61';
-  // }
-
-  // function style(feature) {
-  //   return {
-  //       weight: 2,
-  //       opacity: 1,
-  //       color: 'white',
-  //       dashArray: '3',
-  //       fillOpacity: 0.7,
-  //       fillColor: getColor(care_array[4])
-  //   };
-  // }
-
-  // function highlightFeature(e) {
-  //   var layer = e.target;
-
-  //   layer.setStyle({
-  //     weight: 3,
-  //     color: 'black',
-  //     dashArray: '',
-  //     fillOpacity: 0.7
-  //   });
-
-  //   if (!L.Browser.ie && !L.Browser.opera) {
-  //     layer.bringToFront();
-  //   }
-
-  //   info.update(layer.feature.properties);
-  // }
-
-  // var geojson;
-
-	// 	function resetHighlight(e) {
-	// 		geojson.resetStyle(e.target);
-	// 		info.update();
-	// 	}
-
-	// 	function zoomToFeature(e) {
-	// 		map.fitBounds(e.target.getBounds());
-	// 	}
-
-	// 	function onEachFeature(feature, layer) {
-	// 		layer.on({
-	// 			mouseover: highlightFeature,
-	// 			mouseout: resetHighlight,
-	// 			click: zoomToFeature
-	// 		});
-	// 	}
-
-	// 	geojson = L.geoJson(statesData, {
-	// 		style: style,
-	// 		onEachFeature: onEachFeature
-	// 	}).addTo(myMap);
 
   };
 
@@ -236,6 +162,9 @@ function buildScatterPlot(care) {
         .data(care_array)
         .enter()
         .append("circle")
+        .transition()
+        .delay(function(d,i){return(i*3)})
+        .duration(2000)
         .filter(d => {return d.med_inc < 200000 & d.med_inc > 0})
         .filter(d => {return (d.denominator * d.avg_pmt) < 45000000 })
             .attr("cx", d => { return x(d.med_inc); })
@@ -259,7 +188,7 @@ function buildScatterPlot(care) {
     d3.select(this)
     .transition()
     .duration(1000)
-    .attr("r", 7);
+    .attr("r", 15);
   })
     // on mouseout event
     .on("mouseout", function(care_array, index) {
